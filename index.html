@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Você desbloqueou meu coração. Ele é seu, pra sempre! ❤️</title>
+  <title>Você Desbloqueou Meu Coração ❤️</title>
   <style>
     body {
       background-color: #1e1e2f;
@@ -49,21 +49,41 @@
       color: #ffd1dc;
       line-height: 1.6;
     }
+    img {
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ff4b5c;
+      margin-top: 20px;
+    }
+    audio {
+      margin-top: 30px;
+      width: 300px;
+    }
   </style>
 </head>
 <body>
 
   <h1>Você Desbloqueou Meu Coração ❤️</h1>
+
+  <!-- IMAGEM -->
+  <img src="gato-rouba-filhote-de-gata-da-vizinha-1602877784633_v2_450x600.jpg" alt="Gatinhos abraçados">
+
   <div class="heart">❤️</div>
 
-  <!-- CONTADOR DE TEMPO COMPLETO -->
+  <!-- CONTADOR DE TEMPO -->
   <div id="contador"></div>
 
   <button onclick="mostrarMensagem()">Clique aqui para uma surpresa</button>
   <div id="mensagem"></div>
 
+  <!-- MÚSICA -->
+  <audio id="musica" autoplay loop controls>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
   <script>
-    // === CONTADOR COMPLETO ===
+    // CONTADOR
     function atualizarContador() {
       const dataInicio = new Date("2024-07-24T12:43:00");
       const agora = new Date();
@@ -97,7 +117,7 @@
     setInterval(atualizarContador, 1000);
     atualizarContador();
 
-    // === MENSAGENS DE AMOR ===
+    // MENSAGENS
     const mensagens = [
       "Você é minha missão principal 💘",
       "Se amor fosse XP, você estaria no nível máximo!",
@@ -112,6 +132,14 @@
       const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
       document.getElementById("mensagem").textContent = msg;
     }
+
+    // VOLUME SUAVE DA MÚSICA
+    window.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("musica");
+      if (audio) {
+        audio.volume = 0.3;
+      }
+    });
   </script>
 
 </body>
