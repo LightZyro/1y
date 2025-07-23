@@ -9,7 +9,7 @@
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 30px 20px 60px 20px;
+      padding: 30px 20px 80px 20px;
       max-width: 600px;
       margin: 0 auto;
       overflow-x: hidden; /* evita scroll horizontal causado pelos corações */
@@ -76,12 +76,8 @@
       z-index: 10;
     }
     audio {
-      margin-top: 30px;
-      width: 300px;
-      position: relative;
-      z-index: 10;
+      display: none; /* esconder player nativo, usaremos controles custom */
     }
-
     /* ESTILOS PARA OS CORAÇÕES CAINDO */
     .falling-heart {
       position: fixed;
@@ -96,23 +92,55 @@
       z-index: 5; /* atrás dos elementos principais */
       text-shadow: 0 0 5px #ff4b5c;
     }
-
     @keyframes fall {
       to {
         transform: translateY(110vh) rotate(360deg);
         opacity: 0;
       }
     }
-
     /* Estilo extra para o botão 365 motivos */
     #btnMotivo {
-      margin-top: 40px;
+      margin-top: 10px;
       background-color: #cc3366;
     }
     #btnMotivo:hover {
       background-color: #b32d5a;
     }
-
+    /* Descrição romântica acima do botão */
+    #descricaoMotivo {
+      margin-top: 30px;
+      font-size: 1.1em;
+      color: #ff9fb1;
+      font-style: italic;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.4;
+      position: relative;
+      z-index: 10;
+    }
+    /* Controles do áudio */
+    #controlesAudio {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      position: relative;
+      z-index: 10;
+    }
+    #controlesAudio button {
+      background-color: #ff4b5c;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5em;
+      line-height: 50px;
+      padding: 0;
+      user-select: none;
+    }
+    #controlesAudio button:hover {
+      background-color: #ff2f44;
+    }
   </style>
 </head>
 <body>
@@ -129,11 +157,16 @@
   <button onclick="mostrarMensagem()">Clique aqui para uma surpresa</button>
   <div id="mensagem"></div>
 
+  <!-- DESCRIÇÃO ROMÂNTICA DO BOTÃO 365 MOTIVOS -->
+  <div id="descricaoMotivo">
+    Cada dia, um motivo novo para te amar ainda mais. Porque nosso amor é feito de pequenos detalhes que iluminam minha vida.
+  </div>
+
   <!-- BOTÃO 365 MOTIVOS -->
   <button id="btnMotivo" aria-label="Descubra o motivo do dia para amar">Descubra o motivo de hoje</button>
   <div id="motivo"></div>
 
-  <!-- MÚSICA -->
+  <!-- MÚSICA (oculta, controlada pelos botões) -->
   <audio id="musica" autoplay loop muted>
     <source src="musica.mp3" type="audio/mpeg" />
     Seu navegador não suporta áudio.
@@ -143,6 +176,12 @@
   <p style="margin-top: 30px; font-size: 1.1em; color: #ffd1dc; line-height: 1.5; max-width: 450px; margin-left: auto; margin-right: auto;">
     Não importa quanto tempo passar, você sempre terá o meu coração. Eu te amo garota, muito mesmo. Você é a garotinha dos meus sonhos. Eu te quero como na primeira vez e vou sempre te amar como se fosse a última. Tranquilamente poderia jogar uma gota de água no mar e não pararia de te amar até encontrá-la novamente.
   </p>
+
+  <!-- CONTROLES DE ÁUDIO -->
+  <div id="controlesAudio" aria-label="Controles de áudio">
+    <button id="btnPlayPause" aria-pressed="false" title="Pausar música">⏸️</button>
+    <button id="btnMute" aria-pressed="true" title="Desmutar música">🔇</button>
+  </div>
 
   <script>
     // CONTADOR
@@ -199,6 +238,7 @@
         audio.play();
       }
       audio.muted = false;
+      atualizarBotoesAudio();
     }
 
     // MOTIVOS 365 DIAS
@@ -567,7 +607,7 @@
       "362. Porque seu jeito de ser me faz te amar cada dia mais.",
       "363. Porque seu carinho é meu remédio.",
       "364. Porque seu abraço é meu lugar favorito.",
-      "365. Porque estar com você é estar em casa.
+      "365. Porque estar com você é estar em casa."
     ];
 
     function mostrarMotivo() {
@@ -583,44 +623,68 @@
         audio.play();
       }
       audio.muted = false;
+      atualizarBotoesAudio();
     }
 
     document.getElementById("btnMotivo").addEventListener("click", mostrarMotivo);
 
-    // VOLUME SUAVE DA MÚSICA
-    window.addEventListener("DOMContentLoaded", () => {
-      const audio = document.getElementById("musica");
-      if (audio) {
-        audio.volume = 0.3;
+    // CONTROLES DE ÁUDIO
+    const audio = document.getElementById("musica");
+    const btnPlayPause = document.getElementById("btnPlayPause");
+    const btnMute = document.getElementById("btnMute");
+
+    btnPlayPause.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        btnPlayPause.textContent = "⏸️";
+        btnPlayPause.title = "Pausar música";
+        btnPlayPause.setAttribute("aria-pressed", "false");
+      } else {
+        audio.pause();
+        btnPlayPause.textContent = "▶️";
+        btnPlayPause.title = "Tocar música";
+        btnPlayPause.setAttribute("aria-pressed", "true");
       }
     });
+
+    btnMute.addEventListener("click", () => {
+      audio.muted = !audio.muted;
+      atualizarBotoesAudio();
+    });
+
+    function atualizarBotoesAudio() {
+      btnMute.textContent = audio.muted ? "🔇" : "🔊";
+      btnMute.title = audio.muted ? "Desmutar música" : "Mutar música";
+
+      if (audio.paused) {
+        btnPlayPause.textContent = "▶️";
+        btnPlayPause.title = "Tocar música";
+        btnPlayPause.setAttribute("aria-pressed", "true");
+      } else {
+        btnPlayPause.textContent = "⏸️";
+        btnPlayPause.title = "Pausar música";
+        btnPlayPause.setAttribute("aria-pressed", "false");
+      }
+    }
+
+    atualizarBotoesAudio();
 
     // CORAÇÕES CAINDO
     function criarCoracao() {
       const heart = document.createElement("div");
-      heart.classList.add("falling-heart");
       heart.textContent = "❤️";
-
-      // posição horizontal aleatória (0% a 100% da largura da tela)
-      heart.style.left = Math.random() * 100 + "vw";
-
-      // tamanho aleatório (entre 15px e 30px)
-      const size = 15 + Math.random() * 15;
-      heart.style.fontSize = size + "px";
-
-      // duração da queda (entre 4s e 8s)
-      const duracao = 4000 + Math.random() * 4000;
-      heart.style.animationDuration = duracao + "ms";
-
+      heart.className = "falling-heart";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.fontSize = 15 + Math.random() * 30 + "px";
+      heart.style.animationDuration = 3 + Math.random() * 5 + "s";
       document.body.appendChild(heart);
 
-      // remove o coração após a animação terminar
       setTimeout(() => {
         heart.remove();
-      }, duracao);
+      }, 8000);
     }
-    setInterval(criarCoracao, 300);
-  </script>
 
+    setInterval(criarCoracao, 400);
+  </script>
 </body>
 </html>
