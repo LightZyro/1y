@@ -9,8 +9,8 @@
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 30px 20px 80px 20px;
-      max-width: 600px;
+      padding: 50px 20px 40px;
+      max-width: 500px;
       margin: 0 auto;
       overflow-x: hidden; /* evita scroll horizontal causado pelos corações */
     }
@@ -30,8 +30,8 @@
       100% { transform: scale(1); color: #ff4b5c; }
     }
     button {
-      margin-top: 20px;
-      padding: 12px 25px;
+      margin-top: 30px;
+      padding: 15px 30px;
       font-size: 1em;
       border: none;
       background-color: #ff4b5c;
@@ -41,7 +41,6 @@
       transition: background-color 0.3s ease;
       position: relative;
       z-index: 10;
-      user-select: none;
     }
     button:hover {
       background-color: #ff2f44;
@@ -50,13 +49,16 @@
       outline: 3px solid #ff808b;
       outline-offset: 2px;
     }
-    #mensagem, #motivo {
-      margin-top: 15px;
+    #mensagem {
+      margin-top: 20px;
       font-size: 1.2em;
       font-style: italic;
       position: relative;
       z-index: 10;
-      min-height: 50px;
+      min-height: 2.2em;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
     }
     #contador {
       margin-top: 20px;
@@ -70,13 +72,16 @@
       max-width: 300px;
       border-radius: 15px;
       box-shadow: 0 0 10px #ff4b5c;
-      margin: 20px auto;
-      display: block;
+      margin-top: 20px;
       position: relative;
       z-index: 10;
     }
     audio {
-      display: none; /* esconder player nativo, usaremos controles custom */
+      margin-top: 30px;
+      width: 300px;
+      position: relative;
+      z-index: 10;
+      outline: none;
     }
     /* ESTILOS PARA OS CORAÇÕES CAINDO */
     .falling-heart {
@@ -98,55 +103,96 @@
         opacity: 0;
       }
     }
-    /* Estilo extra para o botão 365 motivos */
-    #btnMotivo {
-      margin-top: 10px;
-      background-color: #cc3366;
-    }
-    #btnMotivo:hover {
-      background-color: #b32d5a;
-    }
-    /* Descrição romântica acima do botão */
-    #descricaoMotivo {
+
+    /* Estilo para a descrição romântica do 365 motivos */
+    #descricao365 {
       margin-top: 30px;
       font-size: 1.1em;
-      color: #ff9fb1;
-      font-style: italic;
+      color: #ffd1dc;
       max-width: 450px;
       margin-left: auto;
       margin-right: auto;
+      font-style: italic;
       line-height: 1.4;
       position: relative;
       z-index: 10;
     }
-    /* Controles do áudio */
-    #controlesAudio {
-      margin-top: 50px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
+    /* Botão dos 365 motivos */
+    #btnMotivos {
+      margin-top: 15px;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      background: #cc3366;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
       position: relative;
       z-index: 10;
     }
-    #controlesAudio button {
-      background-color: #ff4b5c;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5em;
-      line-height: 50px;
-      padding: 0;
-      user-select: none;
+    #btnMotivos:hover {
+      background: #b32d5a;
     }
-    #controlesAudio button:hover {
+    #btnMotivos[title] {
+      position: relative;
+    }
+    #btnMotivos[title]:hover::after {
+      content: attr(title);
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #cc3366;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      opacity: 0.95;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    /* Ajuste para reduzir espaço entre botão surpresa e descrição do 365 */
+    #btnSurpresa {
+      margin-top: 20px;
+    }
+    #descricao365 {
+      margin-top: 10px;
+    }
+
+    /* Controles extras para música */
+    #controlesMusica {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 10;
+    }
+    #controlesMusica button {
+      background-color: #ff4b5c;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    #controlesMusica button:hover {
       background-color: #ff2f44;
     }
+
   </style>
 </head>
 <body>
 
   <h1>Você terá pra sempre o meu coração. Eu te amo, Jamilly ❤️</h1>
 
+  <!-- IMAGEM -->
   <img src="gato-rouba-filhote-de-gata-da-vizinha-1602877784633_v2_450x600.jpg" alt="Foto de gatinhos abraçados" />
 
   <div class="heart">❤️</div>
@@ -154,35 +200,33 @@
   <!-- CONTADOR DE TEMPO -->
   <div id="contador"></div>
 
-  <button onclick="mostrarMensagem()">Clique aqui para uma surpresa</button>
+  <button id="btnSurpresa" onclick="mostrarMensagem()">Clique aqui para uma surpresa</button>
   <div id="mensagem"></div>
 
-  <!-- DESCRIÇÃO ROMÂNTICA DO BOTÃO 365 MOTIVOS -->
-  <div id="descricaoMotivo">
-    Cada dia, um motivo novo para te amar ainda mais. Porque nosso amor é feito de pequenos detalhes que iluminam minha vida.
+  <!-- DESCRIÇÃO ROMÂNTICA DOS 365 MOTIVOS -->
+  <div id="descricao365">
+    Todos os dias, um motivo para você lembrar o quanto é amada e especial para mim.
   </div>
 
-  <!-- BOTÃO 365 MOTIVOS -->
-  <button id="btnMotivo" aria-label="Descubra o motivo do dia para amar">Descubra o motivo de hoje</button>
-  <div id="motivo"></div>
+  <button id="btnMotivos" title="Clique para descobrir o motivo do dia! 📅" onclick="mostrarMotivo()">Descubra o motivo de hoje</button>
+  <div id="motivo" style="margin-top:15px; font-size:1.5rem; color:#ffd1dc; max-width: 500px; margin-left:auto; margin-right:auto;"></div>
 
-  <!-- MÚSICA (oculta, controlada pelos botões) -->
-  <audio id="musica" autoplay loop muted>
+  <!-- CONTROLES DE MÚSICA -->
+  <audio id="musica" autoplay loop controls>
     <source src="musica.mp3" type="audio/mpeg" />
     Seu navegador não suporta áudio.
   </audio>
-
-  <!-- TEXTO ADICIONADO APÓS MÚSICA -->
-  <p style="margin-top: 30px; font-size: 1.1em; color: #ffd1dc; line-height: 1.5; max-width: 450px; margin-left: auto; margin-right: auto;">
-    Não importa quanto tempo passar, você sempre terá o meu coração. Eu te amo garota, muito mesmo. Você é a garotinha dos meus sonhos. Eu te quero como na primeira vez e vou sempre te amar como se fosse a última. Tranquilamente poderia jogar uma gota de água no mar e não pararia de te amar até encontrá-la novamente.
-  </p>
-
-  <!-- CONTROLES DE ÁUDIO -->
-  <div id="controlesAudio" aria-label="Controles de áudio">
-    <button id="btnPlayPause" aria-pressed="false" title="Pausar música">⏸️</button>
-    <button id="btnMute" aria-pressed="true" title="Desmutar música">🔇</button>
+  <div id="controlesMusica">
+    <button onclick="togglePlayPause()" id="btnPlayPause">Pausar</button>
+    <button onclick="toggleMute()" id="btnMute">Mutar</button>
   </div>
 
+  <!-- TEXTO ADICIONAL -->
+  <p style="margin-top: 20px; font-size: 1.1em; color: #ffd1dc; line-height: 1.5; max-width: 450px; margin-left: auto; margin-right: auto;">
+    Não importa quanto tempo passar, você sempre terá o meu coração. Eu te amo garota, muito mesmo. Você é a garotinha dos meus sonhos. Eu te quero como na primeira vez e vou sempre te amar como se fosse a última, tranquilamente poderia jogar uma gota de água no mar e não pararia de te amar até encontrá-la novamente.
+  </p>
+
+  <!-- CORAÇÕES CAINDO -->
   <script>
     // CONTADOR
     function atualizarContador() {
@@ -215,10 +259,11 @@
         <strong>${horas} horas, ${minutos} minutos e ${segundos} segundos</strong>
       `;
     }
+
     setInterval(atualizarContador, 1000);
     atualizarContador();
 
-    // MENSAGENS
+    // MENSAGENS PARA O BOTÃO SURPRESA
     const mensagens = [
       "Você é minha missão principal 💘",
       "Se amor fosse XP, você estaria no nível máximo!",
@@ -226,22 +271,49 @@
       "Nosso amor é tipo código limpo: funciona sempre.",
       "Você é meu player 2 favorito!",
       "Mesmo em loop infinito, eu escolheria você sempre.",
-      "No jogo da vida, meu prêmio é você. 🎮"
+      "No jogo da vida, meu prêmio é você. 🎮",
+      "Você é o algoritmo que resolve todos os meus problemas.",
+      "Meu coração tem cache só pra você.",
+      "Você é a atualização que deixa minha vida melhor.",
+      "Se eu fosse um código, você seria minha função favorita.",
+      "Você é o push perfeito no meu repositório do amor.",
+      "Entre tantos bugs, você é meu debug mais doce.",
+      "Sem você, minha vida é só um código sem compilação.",
+      "Nosso amor roda até sem internet.",
+      "Você é o framework da minha felicidade.",
+      "Com você, todo dia é deploy de alegria.",
+      "Você é o comando git que salva meu coração.",
+      "Você faz meu coração dar loop de alegria!",
+      "Amar você é meu código aberto para sempre.",
+      "Se amor fosse linha de código, você seria meu script eterno.",
+      "Você é o patch que corrige meus dias cinzas.",
+      "Com você, não existe exceção que me impeça de sorrir.",
+      "Você é a variável que define minha felicidade.",
+      "Te amar é o melhor commit da minha vida.",
+      "Você é o breakpoint que pausa meu coração pra te admirar.",
+      "Você é a conexão que mantém meu mundo online.",
+      "Nosso amor é um código que nunca falha.",
+      "Você é meu debugger favorito, porque me faz ver tudo claro.",
+      "Com você, toda rotina vira função feliz.",
+      "Você é o banco de dados onde guardo meus melhores sentimentos.",
+      "Meu coração compila só quando estou com você.",
+      "Você é o plugin que faltava na minha vida.",
+      "Sem você, meu código não roda direito.",
+      "Amar você é a minha função favorita.",
+      "Você é o servidor que mantém meu coração online 24/7.",
+      "Nosso amor é o melhor algoritmo que eu já conheci.",
+      "Você é a interface que conecta meu mundo ao seu.",
+      "Você é o script que executa meus sonhos mais doces.",
+      "Se eu fosse um app, você seria minha atualização favorita.",
+      "Você é o token que dá acesso ao meu coração."
     ];
 
     function mostrarMensagem() {
       const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
       document.getElementById("mensagem").textContent = msg;
-
-      const audio = document.getElementById("musica");
-      if (audio.paused) {
-        audio.play();
-      }
-      audio.muted = false;
-      atualizarBotoesAudio();
     }
 
-    // MOTIVOS 365 DIAS
+    // MOTIVOS DOS 365 DIAS
     const motivos = [
       "1. Porque seu jeito de ser me faz te amar cada dia mais.",
       "2. Porque você é minha calmaria em meio ao caos.",
@@ -612,79 +684,51 @@
 
     function mostrarMotivo() {
       const hoje = new Date();
-      const diaDoAno = Math.floor(
-        (hoje - new Date(hoje.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24)
-      );
-      const motivo = motivos[diaDoAno % motivos.length];
-      document.getElementById("motivo").textContent = motivo;
-
-      const audio = document.getElementById("musica");
-      if (audio.paused) {
-        audio.play();
-      }
-      audio.muted = false;
-      atualizarBotoesAudio();
+      const inicioAno = new Date(hoje.getFullYear(), 0, 1);
+      const diaDoAno = Math.floor((hoje - inicioAno) / (1000 * 60 * 60 * 24));
+      const indice = diaDoAno % motivos.length;
+      document.getElementById("motivo").textContent = motivos[indice];
     }
 
-    document.getElementById("btnMotivo").addEventListener("click", mostrarMotivo);
-
-    // CONTROLES DE ÁUDIO
-    const audio = document.getElementById("musica");
-    const btnPlayPause = document.getElementById("btnPlayPause");
-    const btnMute = document.getElementById("btnMute");
-
-    btnPlayPause.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play();
-        btnPlayPause.textContent = "⏸️";
-        btnPlayPause.title = "Pausar música";
-        btnPlayPause.setAttribute("aria-pressed", "false");
-      } else {
-        audio.pause();
-        btnPlayPause.textContent = "▶️";
-        btnPlayPause.title = "Tocar música";
-        btnPlayPause.setAttribute("aria-pressed", "true");
-      }
-    });
-
-    btnMute.addEventListener("click", () => {
-      audio.muted = !audio.muted;
-      atualizarBotoesAudio();
-    });
-
-    function atualizarBotoesAudio() {
-      btnMute.textContent = audio.muted ? "🔇" : "🔊";
-      btnMute.title = audio.muted ? "Desmutar música" : "Mutar música";
-
-      if (audio.paused) {
-        btnPlayPause.textContent = "▶️";
-        btnPlayPause.title = "Tocar música";
-        btnPlayPause.setAttribute("aria-pressed", "true");
-      } else {
-        btnPlayPause.textContent = "⏸️";
-        btnPlayPause.title = "Pausar música";
-        btnPlayPause.setAttribute("aria-pressed", "false");
-      }
-    }
-
-    atualizarBotoesAudio();
+    mostrarMotivo();
 
     // CORAÇÕES CAINDO
     function criarCoracao() {
-      const heart = document.createElement("div");
-      heart.textContent = "❤️";
-      heart.className = "falling-heart";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.fontSize = 15 + Math.random() * 30 + "px";
-      heart.style.animationDuration = 3 + Math.random() * 5 + "s";
+      const heart = document.createElement('div');
+      heart.textContent = '❤️';
+      heart.className = 'falling-heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      heart.style.opacity = Math.random();
+
       document.body.appendChild(heart);
 
       setTimeout(() => {
         heart.remove();
-      }, 8000);
+      }, 7000);
+    }
+    setInterval(criarCoracao, 400);
+
+    // CONTROLES DE MÚSICA
+    const musica = document.getElementById('musica');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnMute = document.getElementById('btnMute');
+
+    function togglePlayPause() {
+      if (musica.paused) {
+        musica.play();
+        btnPlayPause.textContent = "Pausar";
+      } else {
+        musica.pause();
+        btnPlayPause.textContent = "Tocar";
+      }
     }
 
-    setInterval(criarCoracao, 400);
+    function toggleMute() {
+      musica.muted = !musica.muted;
+      btnMute.textContent = musica.muted ? "Desmutar" : "Mutar";
+    }
   </script>
 </body>
 </html>
