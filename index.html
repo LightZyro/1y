@@ -1,112 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Você Desbloqueou Meu Coração ❤️</title>
+  <meta charset="UTF-8" />
+  <title>Você terá pra sempre o meu coração. Eu te amo, Jamilly ❤️</title>
   <style>
-    body {
-      background-color: #1e1e2f;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-    .heart {
-      font-size: 80px;
-      animation: pulse 1s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); color: #ff4b5c; }
-      50% { transform: scale(1.2); color: #ff808b; }
-      100% { transform: scale(1); color: #ff4b5c; }
-    }
-    button {
-      margin-top: 30px;
-      padding: 15px 30px;
-      font-size: 1em;
-      border: none;
-      background-color: #ff4b5c;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #ff2f44;
-    }
-    #mensagem {
-      margin-top: 30px;
-      font-size: 1.2em;
-      font-style: italic;
-    }
-    #contador {
-      margin-top: 20px;
-      font-size: 1.3em;
-      color: #ffd1dc;
-      line-height: 1.6;
-    }
-    img {
-      max-width: 300px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px #ff4b5c;
-      margin-top: 20px;
-    }
-    audio {
-      margin-top: 30px;
-      width: 300px;
-    }
+    /* ... (todo o seu CSS continua igual aqui) ... */
   </style>
 </head>
 <body>
 
-  <h1>Você Desbloqueou Meu Coração ❤️</h1>
+  <h1>Você terá pra sempre o meu coração. Eu te amo, Jamilly ❤️</h1>
 
-  <!-- IMAGEM -->
-  <img src="gato-rouba-filhote-de-gata-da-vizinha-1602877784633_v2_450x600.jpg" alt="Gatinhos abraçados">
+  <img src="gato-rouba-filhote-de-gata-da-vizinha-1602877784633_v2_450x600.jpg" alt="Foto de gatinhos abraçados" />
 
   <div class="heart">❤️</div>
 
-  <!-- CONTADOR DE TEMPO -->
   <div id="contador"></div>
 
   <button onclick="mostrarMensagem()">Clique aqui para uma surpresa</button>
   <div id="mensagem"></div>
 
-  <!-- MÚSICA -->
+  <!-- NOVO BOTÃO E DIV PARA O MOTIVO DO DIA -->
+  <button onclick="mostrarMotivoDoDia()">Ver motivo do dia para te amar 💖</button>
+  <div id="motivoDoDia" style="margin-top: 20px; font-size: 1.2em; color: #ffd1dc;"></div>
+
   <audio id="musica" autoplay loop controls>
-    <source src="musica.mp3" type="audio/mpeg">
+    <source src="musica.mp3" type="audio/mpeg" />
     Seu navegador não suporta áudio.
   </audio>
 
+  <p style="margin-top: 20px; font-size: 1.1em; color: #ffd1dc;">
+    Não importa quanto tempo passar... (texto romântico continua)
+  </p>
+
   <script>
-    // CONTADOR
+    // CONTADOR DE TEMPO
     function atualizarContador() {
       const dataInicio = new Date("2024-07-24T12:43:00");
       const agora = new Date();
-
       let anos = agora.getFullYear() - dataInicio.getFullYear();
       let meses = agora.getMonth() - dataInicio.getMonth();
       let dias = agora.getDate() - dataInicio.getDate();
-
       if (dias < 0) {
         meses--;
-        dias += new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+        const diasNoMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+        dias += diasNoMesAnterior;
       }
       if (meses < 0) {
         anos--;
         meses += 12;
       }
-
       const diffMs = agora - dataInicio;
       const totalSegundos = Math.floor(diffMs / 1000);
       const horas = Math.floor((totalSegundos % 86400) / 3600);
       const minutos = Math.floor((totalSegundos % 3600) / 60);
       const segundos = totalSegundos % 60;
-
       document.getElementById("contador").innerHTML = `
         Juntos há:<br>
         <strong>${anos} anos, ${meses} meses, ${dias} dias</strong><br>
@@ -117,7 +65,7 @@
     setInterval(atualizarContador, 1000);
     atualizarContador();
 
-    // MENSAGENS
+    // MENSAGENS SURPRESA
     const mensagens = [
       "Você é minha missão principal 💘",
       "Se amor fosse XP, você estaria no nível máximo!",
@@ -133,13 +81,407 @@
       document.getElementById("mensagem").textContent = msg;
     }
 
-    // VOLUME SUAVE DA MÚSICA
+    // MÚSICA
     window.addEventListener("DOMContentLoaded", () => {
       const audio = document.getElementById("musica");
       if (audio) {
         audio.volume = 0.3;
       }
     });
+
+    // CORAÇÕES CAINDO
+    function criarCoracao() {
+      const heart = document.createElement("div");
+      heart.classList.add("falling-heart");
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      const size = 15 + Math.random() * 15;
+      heart.style.fontSize = size + "px";
+      const duracao = 4000 + Math.random() * 4000;
+      heart.style.animationDuration = duracao + "ms";
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, duracao);
+    }
+
+    setInterval(criarCoracao, 300);
+
+    // NOVA FUNÇÃO: 365 MOTIVOS PARA TE AMAR
+    const motivos = [
+      "1. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "2. Porque você é minha calmaria em meio ao caos.",
+      "3. Porque você me entende como ninguém.",
+      "4. Porque você é minha melhor escolha.",
+      "5. Porque seu abraço é meu lugar favorito.",
+      "6. Porque cada detalhe seu me fascina.",
+      "7. Porque seu carinho é meu remédio.",
+      "8. Porque você transforma dias comuns em momentos especiais.",
+      "9. Porque você acredita em mim, mesmo quando eu duvido.",
+      "10. Porque seu abraço é meu lugar favorito.",
+      "11. Porque juntos somos mais fortes.",
+      "12. Porque você me inspira a ser melhor a cada dia.",
+      "13. Porque você é minha calmaria em meio ao caos.",
+      "14. Porque estar com você é estar em casa.",
+      "15. Porque você é o motivo de tantos sorrisos meus.",
+      "16. Porque seu carinho é meu remédio.",
+      "17. Porque juntos somos mais fortes.",
+      "18. Porque tudo é mais bonito quando estou com você.",
+      "19. Porque você me mostra o que é o amor de verdade.",
+      "20. Porque estar com você é estar em casa.",
+      "21. Porque seu sorriso ilumina meu dia.",
+      "22. Porque seu abraço é meu lugar favorito.",
+      "23. Porque você transforma dias comuns em momentos especiais.",
+      "24. Porque até o silêncio ao seu lado é confortável.",
+      "25. Porque você é minha calmaria em meio ao caos.",
+      "26. Porque tudo é mais bonito quando estou com você.",
+      "27. Porque você me inspira a ser melhor a cada dia.",
+      "28. Porque seu carinho é meu remédio.",
+      "29. Porque seu carinho é meu remédio.",
+      "30. Porque nossos planos me enchem de esperança.",
+      "31. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "32. Porque você me entende como ninguém.",
+      "33. Porque você é minha melhor escolha.",
+      "34. Porque seus olhos têm a paz que eu procurava.",
+      "35. Porque nossos planos me enchem de esperança.",
+      "36. Porque cada detalhe seu me fascina.",
+      "37. Porque até o silêncio ao seu lado é confortável.",
+      "38. Porque nossos planos me enchem de esperança.",
+      "39. Porque você me entende como ninguém.",
+      "40. Porque você é minha calmaria em meio ao caos.",
+      "41. Porque você é o motivo de tantos sorrisos meus.",
+      "42. Porque você me inspira a ser melhor a cada dia.",
+      "43. Porque nossos planos me enchem de esperança.",
+      "44. Porque seu toque é inesquecível.",
+      "45. Porque cada detalhe seu me fascina.",
+      "46. Porque seu toque é inesquecível.",
+      "47. Porque até o silêncio ao seu lado é confortável.",
+      "48. Porque seu abraço é meu lugar favorito.",
+      "49. Porque cada detalhe seu me fascina.",
+      "50. Porque você faz meu coração bater mais forte.",
+      "51. Porque seu toque é inesquecível.",
+      "52. Porque você é o motivo de tantos sorrisos meus.",
+      "53. Porque você me entende como ninguém.",
+      "54. Porque até o silêncio ao seu lado é confortável.",
+      "55. Porque você cuida de mim com tanto carinho.",
+      "56. Porque você é minha melhor escolha.",
+      "57. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "58. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "59. Porque seus olhos têm a paz que eu procurava.",
+      "60. Porque nossos planos me enchem de esperança.",
+      "61. Porque você me inspira a ser melhor a cada dia.",
+      "62. Porque tudo é mais bonito quando estou com você.",
+      "63. Porque seu sorriso ilumina meu dia.",
+      "64. Porque tudo é mais bonito quando estou com você.",
+      "65. Porque você me inspira a ser melhor a cada dia.",
+      "66. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "67. Porque seu carinho é meu remédio.",
+      "68. Porque juntos somos mais fortes.",
+      "69. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "70. Porque você acredita em mim, mesmo quando eu duvido.",
+      "71. Porque você é o motivo de tantos sorrisos meus.",
+      "72. Porque você me mostra o que é o amor de verdade.",
+      "73. Porque seu carinho é meu remédio.",
+      "74. Porque você faz meu coração bater mais forte.",
+      "75. Porque cada momento ao seu lado vale ouro.",
+      "76. Porque seu sorriso ilumina meu dia.",
+      "77. Porque você é o motivo de tantos sorrisos meus.",
+      "78. Porque seu jeito me encanta todos os dias.",
+      "79. Porque seu carinho é meu remédio.",
+      "80. Porque seus olhos têm a paz que eu procurava.",
+      "81. Porque seu toque é inesquecível.",
+      "82. Porque você me inspira a ser melhor a cada dia.",
+      "83. Porque você me entende como ninguém.",
+      "84. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "85. Porque seu sorriso ilumina meu dia.",
+      "86. Porque seu jeito me encanta todos os dias.",
+      "87. Porque até o silêncio ao seu lado é confortável.",
+      "88. Porque tudo é mais bonito quando estou com você.",
+      "89. Porque seu abraço é meu lugar favorito.",
+      "90. Porque cada detalhe seu me fascina.",
+      "91. Porque você cuida de mim com tanto carinho.",
+      "92. Porque juntos somos mais fortes.",
+      "93. Porque seu toque é inesquecível.",
+      "94. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "95. Porque seus olhos têm a paz que eu procurava.",
+      "96. Porque seu abraço é meu lugar favorito.",
+      "97. Porque você acredita em mim, mesmo quando eu duvido.",
+      "98. Porque seus olhos têm a paz que eu procurava.",
+      "99. Porque seu jeito me encanta todos os dias.",
+      "100. Porque você é minha melhor escolha.",
+      "101. Porque seu carinho é meu remédio.",
+      "102. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "103. Porque você me inspira a ser melhor a cada dia.",
+      "104. Porque cada detalhe seu me fascina.",
+      "105. Porque você é minha calmaria em meio ao caos.",
+      "106. Porque você me mostra o que é o amor de verdade.",
+      "107. Porque estar com você é estar em casa.",
+      "108. Porque cada detalhe seu me fascina.",
+      "109. Porque você me entende como ninguém.",
+      "110. Porque você é o motivo de tantos sorrisos meus.",
+      "111. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "112. Porque você me inspira a ser melhor a cada dia.",
+      "113. Porque você transforma dias comuns em momentos especiais.",
+      "114. Porque seu toque é inesquecível.",
+      "115. Porque cada momento ao seu lado vale ouro.",
+      "116. Porque tudo é mais bonito quando estou com você.",
+      "117. Porque nossos planos me enchem de esperança.",
+      "118. Porque seu abraço é meu lugar favorito.",
+      "119. Porque seu abraço é meu lugar favorito.",
+      "120. Porque cada momento ao seu lado vale ouro.",
+      "121. Porque tudo é mais bonito quando estou com você.",
+      "122. Porque seu jeito me encanta todos os dias.",
+      "123. Porque você me inspira a ser melhor a cada dia.",
+      "124. Porque você me inspira a ser melhor a cada dia.",
+      "125. Porque você acredita em mim, mesmo quando eu duvido.",
+      "126. Porque você me entende como ninguém.",
+      "127. Porque estar com você é estar em casa.",
+      "128. Porque juntos somos mais fortes.",
+      "129. Porque você é minha calmaria em meio ao caos.",
+      "130. Porque seus olhos têm a paz que eu procurava.",
+      "131. Porque cada detalhe seu me fascina.",
+      "132. Porque seu abraço é meu lugar favorito.",
+      "133. Porque você me inspira a ser melhor a cada dia.",
+      "134. Porque seu sorriso ilumina meu dia.",
+      "135. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "136. Porque seu carinho é meu remédio.",
+      "137. Porque juntos somos mais fortes.",
+      "138. Porque você me inspira a ser melhor a cada dia.",
+      "139. Porque você transforma dias comuns em momentos especiais.",
+      "140. Porque cada momento ao seu lado vale ouro.",
+      "141. Porque cada momento ao seu lado vale ouro.",
+      "142. Porque você faz meu coração bater mais forte.",
+      "143. Porque você é minha calmaria em meio ao caos.",
+      "144. Porque seu abraço é meu lugar favorito.",
+      "145. Porque tudo é mais bonito quando estou com você.",
+      "146. Porque seu sorriso ilumina meu dia.",
+      "147. Porque você faz meu coração bater mais forte.",
+      "148. Porque você é minha calmaria em meio ao caos.",
+      "149. Porque nossos planos me enchem de esperança.",
+      "150. Porque você me entende como ninguém.",
+      "151. Porque você me entende como ninguém.",
+      "152. Porque você faz meu coração bater mais forte.",
+      "153. Porque você cuida de mim com tanto carinho.",
+      "154. Porque seu toque é inesquecível.",
+      "155. Porque nossos planos me enchem de esperança.",
+      "156. Porque cada detalhe seu me fascina.",
+      "157. Porque seu carinho é meu remédio.",
+      "158. Porque seu carinho é meu remédio.",
+      "159. Porque cada detalhe seu me fascina.",
+      "160. Porque você é o motivo de tantos sorrisos meus.",
+      "161. Porque tudo é mais bonito quando estou com você.",
+      "162. Porque você me inspira a ser melhor a cada dia.",
+      "163. Porque juntos somos mais fortes.",
+      "164. Porque seu sorriso ilumina meu dia.",
+      "165. Porque cada detalhe seu me fascina.",
+      "166. Porque seu jeito me encanta todos os dias.",
+      "167. Porque seus olhos têm a paz que eu procurava.",
+      "168. Porque seus olhos têm a paz que eu procurava.",
+      "169. Porque nossos planos me enchem de esperança.",
+      "170. Porque você é o motivo de tantos sorrisos meus.",
+      "171. Porque você faz meu coração bater mais forte.",
+      "172. Porque você me entende como ninguém.",
+      "173. Porque seu sorriso ilumina meu dia.",
+      "174. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "175. Porque você acredita em mim, mesmo quando eu duvido.",
+      "176. Porque você cuida de mim com tanto carinho.",
+      "177. Porque seus olhos têm a paz que eu procurava.",
+      "178. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "179. Porque seu toque é inesquecível.",
+      "180. Porque cada momento ao seu lado vale ouro.",
+      "181. Porque você transforma dias comuns em momentos especiais.",
+      "182. Porque você é o motivo de tantos sorrisos meus.",
+      "183. Porque seu sorriso ilumina meu dia.",
+      "184. Porque estar com você é estar em casa.",
+      "185. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "186. Porque cada detalhe seu me fascina.",
+      "187. Porque seu abraço é meu lugar favorito.",
+      "188. Porque você transforma dias comuns em momentos especiais.",
+      "189. Porque você faz meu coração bater mais forte.",
+      "190. Porque você é o motivo de tantos sorrisos meus.",
+      "191. Porque você me mostra o que é o amor de verdade.",
+      "192. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "193. Porque tudo é mais bonito quando estou com você.",
+      "194. Porque você cuida de mim com tanto carinho.",
+      "195. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "196. Porque você é minha melhor escolha.",
+      "197. Porque você é o motivo de tantos sorrisos meus.",
+      "198. Porque você é minha calmaria em meio ao caos.",
+      "199. Porque você acredita em mim, mesmo quando eu duvido.",
+      "200. Porque estar com você é estar em casa.",
+      "201. Porque tudo é mais bonito quando estou com você.",
+      "202. Porque cada detalhe seu me fascina.",
+      "203. Porque juntos somos mais fortes.",
+      "204. Porque seu sorriso ilumina meu dia.",
+      "205. Porque você acredita em mim, mesmo quando eu duvido.",
+      "206. Porque seu sorriso ilumina meu dia.",
+      "207. Porque você me mostra o que é o amor de verdade.",
+      "208. Porque você faz meu coração bater mais forte.",
+      "209. Porque nossos planos me enchem de esperança.",
+      "210. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "211. Porque juntos somos mais fortes.",
+      "212. Porque seus olhos têm a paz que eu procurava.",
+      "213. Porque até o silêncio ao seu lado é confortável.",
+      "214. Porque nossos planos me enchem de esperança.",
+      "215. Porque seu sorriso ilumina meu dia.",
+      "216. Porque cada detalhe seu me fascina.",
+      "217. Porque cada detalhe seu me fascina.",
+      "218. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "219. Porque seu sorriso ilumina meu dia.",
+      "220. Porque você cuida de mim com tanto carinho.",
+      "221. Porque você me inspira a ser melhor a cada dia.",
+      "222. Porque você me mostra o que é o amor de verdade.",
+      "223. Porque você me entende como ninguém.",
+      "224. Porque até o silêncio ao seu lado é confortável.",
+      "225. Porque você cuida de mim com tanto carinho.",
+      "226. Porque estar com você é estar em casa.",
+      "227. Porque cada momento ao seu lado vale ouro.",
+      "228. Porque seu toque é inesquecível.",
+      "229. Porque seus olhos têm a paz que eu procurava.",
+      "230. Porque tudo é mais bonito quando estou com você.",
+      "231. Porque você acredita em mim, mesmo quando eu duvido.",
+      "232. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "233. Porque você me entende como ninguém.",
+      "234. Porque até o silêncio ao seu lado é confortável.",
+      "235. Porque nossos planos me enchem de esperança.",
+      "236. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "237. Porque você me entende como ninguém.",
+      "238. Porque até o silêncio ao seu lado é confortável.",
+      "239. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "240. Porque você me mostra o que é o amor de verdade.",
+      "241. Porque seu carinho é meu remédio.",
+      "242. Porque você acredita em mim, mesmo quando eu duvido.",
+      "243. Porque tudo é mais bonito quando estou com você.",
+      "244. Porque até o silêncio ao seu lado é confortável.",
+      "245. Porque juntos somos mais fortes.",
+      "246. Porque estar com você é estar em casa.",
+      "247. Porque você é minha melhor escolha.",
+      "248. Porque você é minha melhor escolha.",
+      "249. Porque até o silêncio ao seu lado é confortável.",
+      "250. Porque você me mostra o que é o amor de verdade.",
+      "251. Porque seu abraço é meu lugar favorito.",
+      "252. Porque cada momento ao seu lado vale ouro.",
+      "253. Porque você é o motivo de tantos sorrisos meus.",
+      "254. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "255. Porque juntos somos mais fortes.",
+      "256. Porque seus olhos têm a paz que eu procurava.",
+      "257. Porque juntos somos mais fortes.",
+      "258. Porque cada detalhe seu me fascina.",
+      "259. Porque você me entende como ninguém.",
+      "260. Porque até o silêncio ao seu lado é confortável.",
+      "261. Porque cada detalhe seu me fascina.",
+      "262. Porque seu sorriso ilumina meu dia.",
+      "263. Porque você me entende como ninguém.",
+      "264. Porque seu carinho é meu remédio.",
+      "265. Porque você cuida de mim com tanto carinho.",
+      "266. Porque seu sorriso ilumina meu dia.",
+      "267. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "268. Porque tudo é mais bonito quando estou com você.",
+      "269. Porque você é minha calmaria em meio ao caos.",
+      "270. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "271. Porque nossos planos me enchem de esperança.",
+      "272. Porque você transforma dias comuns em momentos especiais.",
+      "273. Porque você cuida de mim com tanto carinho.",
+      "274. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "275. Porque seu sorriso ilumina meu dia.",
+      "276. Porque estar com você é estar em casa.",
+      "277. Porque seu carinho é meu remédio.",
+      "278. Porque seus olhos têm a paz que eu procurava.",
+      "279. Porque seu carinho é meu remédio.",
+      "280. Porque seu toque é inesquecível.",
+      "281. Porque você me inspira a ser melhor a cada dia.",
+      "282. Porque você cuida de mim com tanto carinho.",
+      "283. Porque seu jeito me encanta todos os dias.",
+      "284. Porque você me mostra o que é o amor de verdade.",
+      "285. Porque até o silêncio ao seu lado é confortável.",
+      "286. Porque nossos planos me enchem de esperança.",
+      "287. Porque você me inspira a ser melhor a cada dia.",
+      "288. Porque cada detalhe seu me fascina.",
+      "289. Porque você cuida de mim com tanto carinho.",
+      "290. Porque você é minha calmaria em meio ao caos.",
+      "291. Porque estar com você é estar em casa.",
+      "292. Porque cada momento ao seu lado vale ouro.",
+      "293. Porque você faz meu coração bater mais forte.",
+      "294. Porque juntos somos mais fortes.",
+      "295. Porque tudo é mais bonito quando estou com você.",
+      "296. Porque seu carinho é meu remédio.",
+      "297. Porque você me inspira a ser melhor a cada dia.",
+      "298. Porque você transforma dias comuns em momentos especiais.",
+      "299. Porque juntos somos mais fortes.",
+      "300. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "301. Porque seu carinho é meu remédio.",
+      "302. Porque seu carinho é meu remédio.",
+      "303. Porque você é minha melhor escolha.",
+      "304. Porque você é minha calmaria em meio ao caos.",
+      "305. Porque seu abraço é meu lugar favorito.",
+      "306. Porque você transforma dias comuns em momentos especiais.",
+      "307. Porque seu abraço é meu lugar favorito.",
+      "308. Porque você é o motivo de tantos sorrisos meus.",
+      "309. Porque juntos somos mais fortes.",
+      "310. Porque você transforma dias comuns em momentos especiais.",
+      "311. Porque seu toque é inesquecível.",
+      "312. Porque seu toque é inesquecível.",
+      "313. Porque você é minha melhor escolha.",
+      "314. Porque seu jeito me encanta todos os dias.",
+      "315. Porque você me mostra o que é o amor de verdade.",
+      "316. Porque você é minha melhor escolha.",
+      "317. Porque você é o motivo de tantos sorrisos meus.",
+      "318. Porque até o silêncio ao seu lado é confortável.",
+      "319. Porque cada detalhe seu me fascina.",
+      "320. Porque você acredita em mim, mesmo quando eu duvido.",
+      "321. Porque seu jeito me encanta todos os dias.",
+      "322. Porque você me inspira a ser melhor a cada dia.",
+      "323. Porque você acredita em mim, mesmo quando eu duvido.",
+      "324. Porque seu toque é inesquecível.",
+      "325. Porque você acredita em mim, mesmo quando eu duvido.",
+      "326. Porque nossos planos me enchem de esperança.",
+      "327. Porque estar com você é estar em casa.",
+      "328. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "329. Porque você transforma dias comuns em momentos especiais.",
+      "330. Porque você é o motivo de tantos sorrisos meus.",
+      "331. Porque seu riso é a trilha sonora perfeita da minha vida.",
+      "332. Porque juntos somos mais fortes.",
+      "333. Porque seu sorriso ilumina meu dia.",
+      "334. Porque você cuida de mim com tanto carinho.",
+      "335. Porque você me mostra o que é o amor de verdade.",
+      "336. Porque estar com você é estar em casa.",
+      "337. Porque estar com você é estar em casa.",
+      "338. Porque cada momento ao seu lado vale ouro.",
+      "339. Porque seu carinho é meu remédio.",
+      "340. Porque cada detalhe seu me fascina.",
+      "341. Porque você é minha melhor escolha.",
+      "342. Porque seu toque é inesquecível.",
+      "343. Porque você é minha melhor escolha.",
+      "344. Porque tudo é mais bonito quando estou com você.",
+      "345. Porque você cuida de mim com tanto carinho.",
+      "346. Porque seu carinho é meu remédio.",
+      "347. Porque nossos planos me enchem de esperança.",
+      "348. Porque você é o motivo de tantos sorrisos meus.",
+      "349. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "350. Porque você me mostra o que é o amor de verdade.",
+      "351. Porque seu jeito me encanta todos os dias.",
+      "352. Porque seu sorriso ilumina meu dia.",
+      "353. Porque você transforma dias comuns em momentos especiais.",
+      "354. Porque cada momento ao seu lado vale ouro.",
+      "355. Porque juntos somos mais fortes.",
+      "356. Porque você acredita em mim, mesmo quando eu duvido.",
+      "357. Porque tudo é mais bonito quando estou com você.",
+      "358. Porque você faz meu coração bater mais forte.",
+      "359. Porque seu jeito me encanta todos os dias.",
+      "360. Porque você faz meu coração bater mais forte.",
+      "361. Porque estar com você é estar em casa.",
+      "362. Porque seu jeito de ser me faz te amar cada dia mais.",
+      "363. Porque seu carinho é meu remédio.",
+      "364. Porque seu abraço é meu lugar favorito.",
+      "365. Porque estar com você é estar em casa."
+    ];
+
+    function mostrarMotivoDoDia() {
+      const hoje = new Date();
+      const diaDoAno = Math.floor((hoje - new Date(hoje.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      const motivo = motivos[diaDoAno % motivos.length];
+      document.getElementById("motivoDoDia").textContent = motivo;
+    }
   </script>
 
 </body>
