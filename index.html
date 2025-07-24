@@ -583,70 +583,33 @@
       document.getElementById("motivo").textContent = motivos[indice];
     }
     //mostrarMotivo();
-        let contadorAtualizado = false; // Variável para controlar quando os anos, meses e dias são atualizados
-
-    function atualizarContador() {
-      const dataInicio = new Date("2024-07-24T12:43:00"); // Data de início
-      const agora = new Date(); // Data e hora atuais
-
-      // Cálculos de horas, minutos e segundos (sempre atualizados)
-      const totalMs = agora - dataInicio;
-      const totalSegundos = Math.floor(totalMs / 1000);
-      const horas = Math.floor((totalSegundos % 86400) / 3600); // Horas
-      const minutos = Math.floor((totalSegundos % 3600) / 60); // Minutos
-      const segundos = totalSegundos % 60; // Segundos
-
-      // Inicializa anos, meses e dias com os valores atuais
-      let anos = dataInicio.getFullYear();
-      let meses = dataInicio.getMonth();
-      let dias = dataInicio.getDate();
-
-      // Verifica se chegou no horário de atualizar anos, meses e dias (12:43)
-      if (agora.getHours() === 12 && agora.getMinutes() === 43 && agora.getSeconds() === 0) {
-        if (!contadorAtualizado) {
-          // Atualiza anos, meses e dias somente quando atingir 12:43
-          anos = agora.getFullYear() - dataInicio.getFullYear();
-          meses = agora.getMonth() - dataInicio.getMonth();
-          dias = agora.getDate() - dataInicio.getDate();
-          
-          if (dias < 0) {
-            meses--;
-            const diasNoMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
-            dias += diasNoMesAnterior;
-          }
-
-          if (meses < 0) {
-            anos--;
-            meses += 12;
-          }
-
-          // Marca que o contador foi atualizado
-          contadorAtualizado = true;
-        }
-      } else {
-        // Resetamos a variável para que os valores de anos, meses e dias possam ser atualizados na próxima vez que for 12:43
-        contadorAtualizado = false;
+        function atualizarContador() {
+      const dataInicio = new Date("2024-07-24T12:43:00");
+      const agora = new Date();
+      let anos = agora.getFullYear() - dataInicio.getFullYear();
+      let meses = agora.getMonth() - dataInicio.getMonth();
+      let dias = agora.getDate() - dataInicio.getDate();
+      if (dias < 0) {
+        meses--;
+        const diasNoMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+        dias += diasNoMesAnterior;
       }
-
-      // Exibe o contador no HTML
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+      const diffMs = agora - dataInicio;
+      const totalSegundos = Math.floor(diffMs / 1000);
+      const horas = Math.floor((totalSegundos % 86400) / 3600);
+      const minutos = Math.floor((totalSegundos % 3600) / 60);
+      const segundos = totalSegundos % 60;
       document.getElementById("contador").innerHTML = `
-        Data de Início: ${dataInicio.toLocaleString()}<br> <!-- Exibe a data de início -->
         Juntos há:<br>
         <strong>${anos} anos, ${meses} meses, ${dias} dias</strong><br>
         <strong>${horas} horas, ${minutos} minutos e ${segundos} segundos</strong>`;
     }
-
-    // Função para configurar a atualização a cada minuto
-    function configurarAtualizacao() {
-      // Atualiza o contador imediatamente
-      atualizarContador();
-      
-      // Configura a atualização a cada 60 segundos (1 minuto)
-      setInterval(atualizarContador, 60000); // 60000ms = 1 minuto
-    }
-
-    // Inicia a atualização do contador
-    configurarAtualizacao();
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
 
     const musica = document.getElementById('musica');
     const btnPlayPause = document.getElementById('btnPlayPause');
