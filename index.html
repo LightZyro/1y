@@ -1,7 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Você terá pra sempre o meu coração. Eu te amo, Jamilly ❤️</title>
   <style>
     body {
@@ -9,20 +11,19 @@
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 50px 20px 40px;
-      max-width: 500px;
+      padding: 5vh 5vw;
       margin: 0 auto;
-      overflow-x: hidden; /* evita scroll horizontal causado pelos corações */
+      overflow-x: hidden;
+      max-width: 1000px;
     }
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
+      font-size: 6vw;
+      margin-bottom: 4vh;
     }
     .heart {
-      font-size: 80px;
+      font-size: 10vw;
       animation: pulse 1s infinite;
-      position: relative;
-      z-index: 10; /* fica acima dos corações caindo */
+      z-index: 10;
     }
     @keyframes pulse {
       0% { transform: scale(1); color: #ff4b5c; }
@@ -30,8 +31,8 @@
       100% { transform: scale(1); color: #ff4b5c; }
     }
     button {
-      margin-top: 30px;
-      padding: 15px 30px;
+      margin-top: 3vh;
+      padding: 1em 2em;
       font-size: 1em;
       border: none;
       background-color: #ff4b5c;
@@ -39,204 +40,85 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      position: relative;
-      z-index: 10;
     }
     button:hover {
       background-color: #ff2f44;
     }
-    button:focus {
-      outline: 3px solid #ff808b;
-      outline-offset: 2px;
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ff4b5c;
+      margin-top: 2vh;
     }
-    #mensagem {
-      margin-top: 20px;
+    #mensagem, #contador, #descricao365, #motivo {
+      margin-top: 2vh;
       font-size: 1.2em;
-      font-style: italic;
-      position: relative;
-      z-index: 10;
-      min-height: 2.2em;
+      line-height: 1.5em;
       max-width: 90%;
       margin-left: auto;
       margin-right: auto;
     }
-    #contador {
-      margin-top: 20px;
-      font-size: 1.3em;
-      color: #ffd1dc;
-      line-height: 1.6;
-      position: relative;
-      z-index: 10;
-    }
-    img {
-      max-width: 300px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px #ff4b5c;
-      margin-top: 20px;
-      position: relative;
-      z-index: 10;
-    }
     audio {
-      margin-top: 30px;
-      width: 300px;
-      position: relative;
-      z-index: 10;
-      outline: none;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 2vh;
     }
-    /* ESTILOS PARA OS CORAÇÕES CAINDO */
-    .falling-heart {
-      position: fixed;
-      top: -50px;
-      font-size: 20px;
-      color: #ff4b5c;
-      pointer-events: none;
-      user-select: none;
-      animation-name: fall;
-      animation-timing-function: linear;
-      animation-fill-mode: forwards;
-      z-index: 5; /* atrás dos elementos principais */
-      text-shadow: 0 0 5px #ff4b5c;
-    }
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Estilo para a descrição romântica do 365 motivos */
-    #descricao365 {
-      margin-top: 30px;
-      font-size: 1.1em;
-      color: #ffd1dc;
-      max-width: 450px;
-      margin-left: auto;
-      margin-right: auto;
-      font-style: italic;
-      line-height: 1.4;
-      position: relative;
-      z-index: 10;
-    }
-    /* Botão dos 365 motivos */
-    #btnMotivos {
-      margin-top: 15px;
-      padding: 12px 25px;
-      font-size: 1.1rem;
-      background: #cc3366;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      position: relative;
-      z-index: 10;
-    }
-    #btnMotivos:hover {
-      background: #b32d5a;
-    }
-    #btnMotivos[title] {
-      position: relative;
-    }
-    #btnMotivos[title]:hover::after {
-      content: attr(title);
-      position: absolute;
-      bottom: 130%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #cc3366;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 6px;
-      white-space: nowrap;
-      font-size: 0.9rem;
-      opacity: 0.95;
-      z-index: 20;
-      pointer-events: none;
-    }
-
-    /* Ajuste para reduzir espaço entre botão surpresa e descrição do 365 */
-    #btnSurpresa {
-      margin-top: 20px;
-    }
-    #descricao365 {
-      margin-top: 10px;
-    }
-
-    /* Controles extras para música */
     #controlesMusica {
-      margin-top: 15px;
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 10px;
       flex-wrap: wrap;
-      position: relative;
-      z-index: 10;
+      margin-top: 2vh;
     }
     #controlesMusica button {
-      background-color: #ff4b5c;
-      border-radius: 8px;
-      border: none;
-      color: white;
-      padding: 10px 18px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
+      padding: 0.8em 1.5em;
     }
-    #controlesMusica button:hover {
-      background-color: #ff2f44;
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6em; }
+      .heart { font-size: 2.5em; }
+      button { font-size: 1em; }
     }
-
   </style>
 </head>
 <body>
-
   <h1>Você terá pra sempre o meu coração. Eu te amo, Jamilly ❤️</h1>
-
-  <!-- IMAGEM -->
   <img src="gato-rouba-filhote-de-gata-da-vizinha-1602877784633_v2_450x600.jpg" alt="Foto de gatinhos abraçados" />
-
   <div class="heart">❤️</div>
-
-  <!-- CONTADOR DE TEMPO -->
   <div id="contador"></div>
-
-  <button id="btnSurpresa" onclick="mostrarMensagem()">Clique aqui para uma surpresa</button>
+  <button onclick="mostrarMensagem()">Clique aqui para uma surpresa</button>
   <div id="mensagem"></div>
-
-  <!-- DESCRIÇÃO ROMÂNTICA DOS 365 MOTIVOS -->
-  <div id="descricao365">
-    Todos os dias, um motivo para você lembrar o quanto é amada e especial para mim.
-  </div>
-
-  <button id="btnMotivos" title="Clique para descobrir o motivo do dia! 📅" onclick="mostrarMotivo()">Descubra o motivo de hoje</button>
-  <div id="motivo" style="margin-top:15px; font-size:1.5rem; color:#ffd1dc; max-width: 500px; margin-left:auto; margin-right:auto;"></div>
-
-  <!-- CONTROLES DE MÚSICA -->
+  <div id="descricao365">Todos os dias, um motivo para você lembrar o quanto é amada e especial para mim.</div>
+  <button onclick="mostrarMotivo()">Descubra o motivo de hoje</button>
+  <div id="motivo"></div>
   <audio id="musica" autoplay loop controls>
     <source src="musica.mp3" type="audio/mpeg" />
-    Seu navegador não suporta áudio.
   </audio>
   <div id="controlesMusica">
     <button onclick="togglePlayPause()" id="btnPlayPause">Pausar</button>
     <button onclick="toggleMute()" id="btnMute">Mutar</button>
   </div>
-
-  <!-- TEXTO ADICIONAL -->
-  <p style="margin-top: 20px; font-size: 1.1em; color: #ffd1dc; line-height: 1.5; max-width: 450px; margin-left: auto; margin-right: auto;">
-    Não importa quanto tempo passar, você sempre terá o meu coração. Eu te amo garota, muito mesmo. Você é a garotinha dos meus sonhos. Eu te quero como na primeira vez e vou sempre te amar como se fosse a última, tranquilamente poderia jogar uma gota de água no mar e não pararia de te amar até encontrá-la novamente.
-  </p>
-
-  <!-- CORAÇÕES CAINDO -->
   <script>
-    // CONTADOR
+    const mensagens = ["Você é minha missão principal 💘", "Você é meu player 2 favorito!", "Você é o algoritmo que resolve todos os meus problemas."];
+    function mostrarMensagem() {
+      const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+      document.getElementById("mensagem").textContent = msg;
+    }
+    const motivos = ['1. Porque você é especial de um jeito que ninguém mais é.', '2. Porque você é especial de um jeito que ninguém mais é.', '3. Porque você é especial de um jeito que ninguém mais é.', '4. Porque você é especial de um jeito que ninguém mais é.', '5. Porque você é especial de um jeito que ninguém mais é.', '6. Porque você é especial de um jeito que ninguém mais é.', '7. Porque você é especial de um jeito que ninguém mais é.', '8. Porque você é especial de um jeito que ninguém mais é.', '9. Porque você é especial de um jeito que ninguém mais é.', '10. Porque você é especial de um jeito que ninguém mais é.', '11. Porque você é especial de um jeito que ninguém mais é.', '12. Porque você é especial de um jeito que ninguém mais é.', '13. Porque você é especial de um jeito que ninguém mais é.', '14. Porque você é especial de um jeito que ninguém mais é.', '15. Porque você é especial de um jeito que ninguém mais é.', '16. Porque você é especial de um jeito que ninguém mais é.', '17. Porque você é especial de um jeito que ninguém mais é.', '18. Porque você é especial de um jeito que ninguém mais é.', '19. Porque você é especial de um jeito que ninguém mais é.', '20. Porque você é especial de um jeito que ninguém mais é.', '21. Porque você é especial de um jeito que ninguém mais é.', '22. Porque você é especial de um jeito que ninguém mais é.', '23. Porque você é especial de um jeito que ninguém mais é.', '24. Porque você é especial de um jeito que ninguém mais é.', '25. Porque você é especial de um jeito que ninguém mais é.', '26. Porque você é especial de um jeito que ninguém mais é.', '27. Porque você é especial de um jeito que ninguém mais é.', '28. Porque você é especial de um jeito que ninguém mais é.', '29. Porque você é especial de um jeito que ninguém mais é.', '30. Porque você é especial de um jeito que ninguém mais é.', '31. Porque você é especial de um jeito que ninguém mais é.', '32. Porque você é especial de um jeito que ninguém mais é.', '33. Porque você é especial de um jeito que ninguém mais é.', '34. Porque você é especial de um jeito que ninguém mais é.', '35. Porque você é especial de um jeito que ninguém mais é.', '36. Porque você é especial de um jeito que ninguém mais é.', '37. Porque você é especial de um jeito que ninguém mais é.', '38. Porque você é especial de um jeito que ninguém mais é.', '39. Porque você é especial de um jeito que ninguém mais é.', '40. Porque você é especial de um jeito que ninguém mais é.', '41. Porque você é especial de um jeito que ninguém mais é.', '42. Porque você é especial de um jeito que ninguém mais é.', '43. Porque você é especial de um jeito que ninguém mais é.', '44. Porque você é especial de um jeito que ninguém mais é.', '45. Porque você é especial de um jeito que ninguém mais é.', '46. Porque você é especial de um jeito que ninguém mais é.', '47. Porque você é especial de um jeito que ninguém mais é.', '48. Porque você é especial de um jeito que ninguém mais é.', '49. Porque você é especial de um jeito que ninguém mais é.', '50. Porque você é especial de um jeito que ninguém mais é.', '51. Porque você é especial de um jeito que ninguém mais é.', '52. Porque você é especial de um jeito que ninguém mais é.', '53. Porque você é especial de um jeito que ninguém mais é.', '54. Porque você é especial de um jeito que ninguém mais é.', '55. Porque você é especial de um jeito que ninguém mais é.', '56. Porque você é especial de um jeito que ninguém mais é.', '57. Porque você é especial de um jeito que ninguém mais é.', '58. Porque você é especial de um jeito que ninguém mais é.', '59. Porque você é especial de um jeito que ninguém mais é.', '60. Porque você é especial de um jeito que ninguém mais é.', '61. Porque você é especial de um jeito que ninguém mais é.', '62. Porque você é especial de um jeito que ninguém mais é.', '63. Porque você é especial de um jeito que ninguém mais é.', '64. Porque você é especial de um jeito que ninguém mais é.', '65. Porque você é especial de um jeito que ninguém mais é.', '66. Porque você é especial de um jeito que ninguém mais é.', '67. Porque você é especial de um jeito que ninguém mais é.', '68. Porque você é especial de um jeito que ninguém mais é.', '69. Porque você é especial de um jeito que ninguém mais é.', '70. Porque você é especial de um jeito que ninguém mais é.', '71. Porque você é especial de um jeito que ninguém mais é.', '72. Porque você é especial de um jeito que ninguém mais é.', '73. Porque você é especial de um jeito que ninguém mais é.', '74. Porque você é especial de um jeito que ninguém mais é.', '75. Porque você é especial de um jeito que ninguém mais é.', '76. Porque você é especial de um jeito que ninguém mais é.', '77. Porque você é especial de um jeito que ninguém mais é.', '78. Porque você é especial de um jeito que ninguém mais é.', '79. Porque você é especial de um jeito que ninguém mais é.', '80. Porque você é especial de um jeito que ninguém mais é.', '81. Porque você é especial de um jeito que ninguém mais é.', '82. Porque você é especial de um jeito que ninguém mais é.', '83. Porque você é especial de um jeito que ninguém mais é.', '84. Porque você é especial de um jeito que ninguém mais é.', '85. Porque você é especial de um jeito que ninguém mais é.', '86. Porque você é especial de um jeito que ninguém mais é.', '87. Porque você é especial de um jeito que ninguém mais é.', '88. Porque você é especial de um jeito que ninguém mais é.', '89. Porque você é especial de um jeito que ninguém mais é.', '90. Porque você é especial de um jeito que ninguém mais é.', '91. Porque você é especial de um jeito que ninguém mais é.', '92. Porque você é especial de um jeito que ninguém mais é.', '93. Porque você é especial de um jeito que ninguém mais é.', '94. Porque você é especial de um jeito que ninguém mais é.', '95. Porque você é especial de um jeito que ninguém mais é.', '96. Porque você é especial de um jeito que ninguém mais é.', '97. Porque você é especial de um jeito que ninguém mais é.', '98. Porque você é especial de um jeito que ninguém mais é.', '99. Porque você é especial de um jeito que ninguém mais é.', '100. Porque você é especial de um jeito que ninguém mais é.', '101. Porque você é especial de um jeito que ninguém mais é.', '102. Porque você é especial de um jeito que ninguém mais é.', '103. Porque você é especial de um jeito que ninguém mais é.', '104. Porque você é especial de um jeito que ninguém mais é.', '105. Porque você é especial de um jeito que ninguém mais é.', '106. Porque você é especial de um jeito que ninguém mais é.', '107. Porque você é especial de um jeito que ninguém mais é.', '108. Porque você é especial de um jeito que ninguém mais é.', '109. Porque você é especial de um jeito que ninguém mais é.', '110. Porque você é especial de um jeito que ninguém mais é.', '111. Porque você é especial de um jeito que ninguém mais é.', '112. Porque você é especial de um jeito que ninguém mais é.', '113. Porque você é especial de um jeito que ninguém mais é.', '114. Porque você é especial de um jeito que ninguém mais é.', '115. Porque você é especial de um jeito que ninguém mais é.', '116. Porque você é especial de um jeito que ninguém mais é.', '117. Porque você é especial de um jeito que ninguém mais é.', '118. Porque você é especial de um jeito que ninguém mais é.', '119. Porque você é especial de um jeito que ninguém mais é.', '120. Porque você é especial de um jeito que ninguém mais é.', '121. Porque você é especial de um jeito que ninguém mais é.', '122. Porque você é especial de um jeito que ninguém mais é.', '123. Porque você é especial de um jeito que ninguém mais é.', '124. Porque você é especial de um jeito que ninguém mais é.', '125. Porque você é especial de um jeito que ninguém mais é.', '126. Porque você é especial de um jeito que ninguém mais é.', '127. Porque você é especial de um jeito que ninguém mais é.', '128. Porque você é especial de um jeito que ninguém mais é.', '129. Porque você é especial de um jeito que ninguém mais é.', '130. Porque você é especial de um jeito que ninguém mais é.', '131. Porque você é especial de um jeito que ninguém mais é.', '132. Porque você é especial de um jeito que ninguém mais é.', '133. Porque você é especial de um jeito que ninguém mais é.', '134. Porque você é especial de um jeito que ninguém mais é.', '135. Porque você é especial de um jeito que ninguém mais é.', '136. Porque você é especial de um jeito que ninguém mais é.', '137. Porque você é especial de um jeito que ninguém mais é.', '138. Porque você é especial de um jeito que ninguém mais é.', '139. Porque você é especial de um jeito que ninguém mais é.', '140. Porque você é especial de um jeito que ninguém mais é.', '141. Porque você é especial de um jeito que ninguém mais é.', '142. Porque você é especial de um jeito que ninguém mais é.', '143. Porque você é especial de um jeito que ninguém mais é.', '144. Porque você é especial de um jeito que ninguém mais é.', '145. Porque você é especial de um jeito que ninguém mais é.', '146. Porque você é especial de um jeito que ninguém mais é.', '147. Porque você é especial de um jeito que ninguém mais é.', '148. Porque você é especial de um jeito que ninguém mais é.', '149. Porque você é especial de um jeito que ninguém mais é.', '150. Porque você é especial de um jeito que ninguém mais é.', '151. Porque você é especial de um jeito que ninguém mais é.', '152. Porque você é especial de um jeito que ninguém mais é.', '153. Porque você é especial de um jeito que ninguém mais é.', '154. Porque você é especial de um jeito que ninguém mais é.', '155. Porque você é especial de um jeito que ninguém mais é.', '156. Porque você é especial de um jeito que ninguém mais é.', '157. Porque você é especial de um jeito que ninguém mais é.', '158. Porque você é especial de um jeito que ninguém mais é.', '159. Porque você é especial de um jeito que ninguém mais é.', '160. Porque você é especial de um jeito que ninguém mais é.', '161. Porque você é especial de um jeito que ninguém mais é.', '162. Porque você é especial de um jeito que ninguém mais é.', '163. Porque você é especial de um jeito que ninguém mais é.', '164. Porque você é especial de um jeito que ninguém mais é.', '165. Porque você é especial de um jeito que ninguém mais é.', '166. Porque você é especial de um jeito que ninguém mais é.', '167. Porque você é especial de um jeito que ninguém mais é.', '168. Porque você é especial de um jeito que ninguém mais é.', '169. Porque você é especial de um jeito que ninguém mais é.', '170. Porque você é especial de um jeito que ninguém mais é.', '171. Porque você é especial de um jeito que ninguém mais é.', '172. Porque você é especial de um jeito que ninguém mais é.', '173. Porque você é especial de um jeito que ninguém mais é.', '174. Porque você é especial de um jeito que ninguém mais é.', '175. Porque você é especial de um jeito que ninguém mais é.', '176. Porque você é especial de um jeito que ninguém mais é.', '177. Porque você é especial de um jeito que ninguém mais é.', '178. Porque você é especial de um jeito que ninguém mais é.', '179. Porque você é especial de um jeito que ninguém mais é.', '180. Porque você é especial de um jeito que ninguém mais é.', '181. Porque você é especial de um jeito que ninguém mais é.', '182. Porque você é especial de um jeito que ninguém mais é.', '183. Porque você é especial de um jeito que ninguém mais é.', '184. Porque você é especial de um jeito que ninguém mais é.', '185. Porque você é especial de um jeito que ninguém mais é.', '186. Porque você é especial de um jeito que ninguém mais é.', '187. Porque você é especial de um jeito que ninguém mais é.', '188. Porque você é especial de um jeito que ninguém mais é.', '189. Porque você é especial de um jeito que ninguém mais é.', '190. Porque você é especial de um jeito que ninguém mais é.', '191. Porque você é especial de um jeito que ninguém mais é.', '192. Porque você é especial de um jeito que ninguém mais é.', '193. Porque você é especial de um jeito que ninguém mais é.', '194. Porque você é especial de um jeito que ninguém mais é.', '195. Porque você é especial de um jeito que ninguém mais é.', '196. Porque você é especial de um jeito que ninguém mais é.', '197. Porque você é especial de um jeito que ninguém mais é.', '198. Porque você é especial de um jeito que ninguém mais é.', '199. Porque você é especial de um jeito que ninguém mais é.', '200. Porque você é especial de um jeito que ninguém mais é.', '201. Porque você é especial de um jeito que ninguém mais é.', '202. Porque você é especial de um jeito que ninguém mais é.', '203. Porque você é especial de um jeito que ninguém mais é.', '204. Porque você é especial de um jeito que ninguém mais é.', '205. Porque você é especial de um jeito que ninguém mais é.', '206. Porque você é especial de um jeito que ninguém mais é.', '207. Porque você é especial de um jeito que ninguém mais é.', '208. Porque você é especial de um jeito que ninguém mais é.', '209. Porque você é especial de um jeito que ninguém mais é.', '210. Porque você é especial de um jeito que ninguém mais é.', '211. Porque você é especial de um jeito que ninguém mais é.', '212. Porque você é especial de um jeito que ninguém mais é.', '213. Porque você é especial de um jeito que ninguém mais é.', '214. Porque você é especial de um jeito que ninguém mais é.', '215. Porque você é especial de um jeito que ninguém mais é.', '216. Porque você é especial de um jeito que ninguém mais é.', '217. Porque você é especial de um jeito que ninguém mais é.', '218. Porque você é especial de um jeito que ninguém mais é.', '219. Porque você é especial de um jeito que ninguém mais é.', '220. Porque você é especial de um jeito que ninguém mais é.', '221. Porque você é especial de um jeito que ninguém mais é.', '222. Porque você é especial de um jeito que ninguém mais é.', '223. Porque você é especial de um jeito que ninguém mais é.', '224. Porque você é especial de um jeito que ninguém mais é.', '225. Porque você é especial de um jeito que ninguém mais é.', '226. Porque você é especial de um jeito que ninguém mais é.', '227. Porque você é especial de um jeito que ninguém mais é.', '228. Porque você é especial de um jeito que ninguém mais é.', '229. Porque você é especial de um jeito que ninguém mais é.', '230. Porque você é especial de um jeito que ninguém mais é.', '231. Porque você é especial de um jeito que ninguém mais é.', '232. Porque você é especial de um jeito que ninguém mais é.', '233. Porque você é especial de um jeito que ninguém mais é.', '234. Porque você é especial de um jeito que ninguém mais é.', '235. Porque você é especial de um jeito que ninguém mais é.', '236. Porque você é especial de um jeito que ninguém mais é.', '237. Porque você é especial de um jeito que ninguém mais é.', '238. Porque você é especial de um jeito que ninguém mais é.', '239. Porque você é especial de um jeito que ninguém mais é.', '240. Porque você é especial de um jeito que ninguém mais é.', '241. Porque você é especial de um jeito que ninguém mais é.', '242. Porque você é especial de um jeito que ninguém mais é.', '243. Porque você é especial de um jeito que ninguém mais é.', '244. Porque você é especial de um jeito que ninguém mais é.', '245. Porque você é especial de um jeito que ninguém mais é.', '246. Porque você é especial de um jeito que ninguém mais é.', '247. Porque você é especial de um jeito que ninguém mais é.', '248. Porque você é especial de um jeito que ninguém mais é.', '249. Porque você é especial de um jeito que ninguém mais é.', '250. Porque você é especial de um jeito que ninguém mais é.', '251. Porque você é especial de um jeito que ninguém mais é.', '252. Porque você é especial de um jeito que ninguém mais é.', '253. Porque você é especial de um jeito que ninguém mais é.', '254. Porque você é especial de um jeito que ninguém mais é.', '255. Porque você é especial de um jeito que ninguém mais é.', '256. Porque você é especial de um jeito que ninguém mais é.', '257. Porque você é especial de um jeito que ninguém mais é.', '258. Porque você é especial de um jeito que ninguém mais é.', '259. Porque você é especial de um jeito que ninguém mais é.', '260. Porque você é especial de um jeito que ninguém mais é.', '261. Porque você é especial de um jeito que ninguém mais é.', '262. Porque você é especial de um jeito que ninguém mais é.', '263. Porque você é especial de um jeito que ninguém mais é.', '264. Porque você é especial de um jeito que ninguém mais é.', '265. Porque você é especial de um jeito que ninguém mais é.', '266. Porque você é especial de um jeito que ninguém mais é.', '267. Porque você é especial de um jeito que ninguém mais é.', '268. Porque você é especial de um jeito que ninguém mais é.', '269. Porque você é especial de um jeito que ninguém mais é.', '270. Porque você é especial de um jeito que ninguém mais é.', '271. Porque você é especial de um jeito que ninguém mais é.', '272. Porque você é especial de um jeito que ninguém mais é.', '273. Porque você é especial de um jeito que ninguém mais é.', '274. Porque você é especial de um jeito que ninguém mais é.', '275. Porque você é especial de um jeito que ninguém mais é.', '276. Porque você é especial de um jeito que ninguém mais é.', '277. Porque você é especial de um jeito que ninguém mais é.', '278. Porque você é especial de um jeito que ninguém mais é.', '279. Porque você é especial de um jeito que ninguém mais é.', '280. Porque você é especial de um jeito que ninguém mais é.', '281. Porque você é especial de um jeito que ninguém mais é.', '282. Porque você é especial de um jeito que ninguém mais é.', '283. Porque você é especial de um jeito que ninguém mais é.', '284. Porque você é especial de um jeito que ninguém mais é.', '285. Porque você é especial de um jeito que ninguém mais é.', '286. Porque você é especial de um jeito que ninguém mais é.', '287. Porque você é especial de um jeito que ninguém mais é.', '288. Porque você é especial de um jeito que ninguém mais é.', '289. Porque você é especial de um jeito que ninguém mais é.', '290. Porque você é especial de um jeito que ninguém mais é.', '291. Porque você é especial de um jeito que ninguém mais é.', '292. Porque você é especial de um jeito que ninguém mais é.', '293. Porque você é especial de um jeito que ninguém mais é.', '294. Porque você é especial de um jeito que ninguém mais é.', '295. Porque você é especial de um jeito que ninguém mais é.', '296. Porque você é especial de um jeito que ninguém mais é.', '297. Porque você é especial de um jeito que ninguém mais é.', '298. Porque você é especial de um jeito que ninguém mais é.', '299. Porque você é especial de um jeito que ninguém mais é.', '300. Porque você é especial de um jeito que ninguém mais é.', '301. Porque você é especial de um jeito que ninguém mais é.', '302. Porque você é especial de um jeito que ninguém mais é.', '303. Porque você é especial de um jeito que ninguém mais é.', '304. Porque você é especial de um jeito que ninguém mais é.', '305. Porque você é especial de um jeito que ninguém mais é.', '306. Porque você é especial de um jeito que ninguém mais é.', '307. Porque você é especial de um jeito que ninguém mais é.', '308. Porque você é especial de um jeito que ninguém mais é.', '309. Porque você é especial de um jeito que ninguém mais é.', '310. Porque você é especial de um jeito que ninguém mais é.', '311. Porque você é especial de um jeito que ninguém mais é.', '312. Porque você é especial de um jeito que ninguém mais é.', '313. Porque você é especial de um jeito que ninguém mais é.', '314. Porque você é especial de um jeito que ninguém mais é.', '315. Porque você é especial de um jeito que ninguém mais é.', '316. Porque você é especial de um jeito que ninguém mais é.', '317. Porque você é especial de um jeito que ninguém mais é.', '318. Porque você é especial de um jeito que ninguém mais é.', '319. Porque você é especial de um jeito que ninguém mais é.', '320. Porque você é especial de um jeito que ninguém mais é.', '321. Porque você é especial de um jeito que ninguém mais é.', '322. Porque você é especial de um jeito que ninguém mais é.', '323. Porque você é especial de um jeito que ninguém mais é.', '324. Porque você é especial de um jeito que ninguém mais é.', '325. Porque você é especial de um jeito que ninguém mais é.', '326. Porque você é especial de um jeito que ninguém mais é.', '327. Porque você é especial de um jeito que ninguém mais é.', '328. Porque você é especial de um jeito que ninguém mais é.', '329. Porque você é especial de um jeito que ninguém mais é.', '330. Porque você é especial de um jeito que ninguém mais é.', '331. Porque você é especial de um jeito que ninguém mais é.', '332. Porque você é especial de um jeito que ninguém mais é.', '333. Porque você é especial de um jeito que ninguém mais é.', '334. Porque você é especial de um jeito que ninguém mais é.', '335. Porque você é especial de um jeito que ninguém mais é.', '336. Porque você é especial de um jeito que ninguém mais é.', '337. Porque você é especial de um jeito que ninguém mais é.', '338. Porque você é especial de um jeito que ninguém mais é.', '339. Porque você é especial de um jeito que ninguém mais é.', '340. Porque você é especial de um jeito que ninguém mais é.', '341. Porque você é especial de um jeito que ninguém mais é.', '342. Porque você é especial de um jeito que ninguém mais é.', '343. Porque você é especial de um jeito que ninguém mais é.', '344. Porque você é especial de um jeito que ninguém mais é.', '345. Porque você é especial de um jeito que ninguém mais é.', '346. Porque você é especial de um jeito que ninguém mais é.', '347. Porque você é especial de um jeito que ninguém mais é.', '348. Porque você é especial de um jeito que ninguém mais é.', '349. Porque você é especial de um jeito que ninguém mais é.', '350. Porque você é especial de um jeito que ninguém mais é.', '351. Porque você é especial de um jeito que ninguém mais é.', '352. Porque você é especial de um jeito que ninguém mais é.', '353. Porque você é especial de um jeito que ninguém mais é.', '354. Porque você é especial de um jeito que ninguém mais é.', '355. Porque você é especial de um jeito que ninguém mais é.', '356. Porque você é especial de um jeito que ninguém mais é.', '357. Porque você é especial de um jeito que ninguém mais é.', '358. Porque você é especial de um jeito que ninguém mais é.', '359. Porque você é especial de um jeito que ninguém mais é.', '360. Porque você é especial de um jeito que ninguém mais é.', '361. Porque você é especial de um jeito que ninguém mais é.', '362. Porque você é especial de um jeito que ninguém mais é.', '363. Porque você é especial de um jeito que ninguém mais é.', '364. Porque você é especial de um jeito que ninguém mais é.', '365. Porque você é especial de um jeito que ninguém mais é.'];
+    function mostrarMotivo() {
+      const hoje = new Date();
+      const inicioAno = new Date(hoje.getFullYear(), 0, 1);
+      const diaDoAno = Math.floor((hoje - inicioAno) / (1000 * 60 * 60 * 24));
+      const indice = diaDoAno % motivos.length;
+      document.getElementById("motivo").textContent = motivos[indice];
+    }
+    mostrarMotivo();
     function atualizarContador() {
       const dataInicio = new Date("2024-07-24T12:43:00");
       const agora = new Date();
-
       let anos = agora.getFullYear() - dataInicio.getFullYear();
       let meses = agora.getMonth() - dataInicio.getMonth();
       let dias = agora.getDate() - dataInicio.getDate();
-
       if (dias < 0) {
         meses--;
         const diasNoMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
@@ -246,475 +128,21 @@
         anos--;
         meses += 12;
       }
-
       const diffMs = agora - dataInicio;
       const totalSegundos = Math.floor(diffMs / 1000);
       const horas = Math.floor((totalSegundos % 86400) / 3600);
       const minutos = Math.floor((totalSegundos % 3600) / 60);
       const segundos = totalSegundos % 60;
-
       document.getElementById("contador").innerHTML = `
         Juntos há:<br>
         <strong>${anos} anos, ${meses} meses, ${dias} dias</strong><br>
-        <strong>${horas} horas, ${minutos} minutos e ${segundos} segundos</strong>
-      `;
+        <strong>${horas} horas, ${minutos} minutos e ${segundos} segundos</strong>`;
     }
-
     setInterval(atualizarContador, 1000);
     atualizarContador();
-
-    // MENSAGENS PARA O BOTÃO SURPRESA
-    const mensagens = [
-      "Você é minha missão principal 💘",
-      "Se amor fosse XP, você estaria no nível máximo!",
-      "Você é o bug mais fofo que eu nunca quero corrigir.",
-      "Nosso amor é tipo código limpo: funciona sempre.",
-      "Você é meu player 2 favorito!",
-      "Mesmo em loop infinito, eu escolheria você sempre.",
-      "No jogo da vida, meu prêmio é você. 🎮",
-      "Você é o algoritmo que resolve todos os meus problemas.",
-      "Meu coração tem cache só pra você.",
-      "Você é a atualização que deixa minha vida melhor.",
-      "Se eu fosse um código, você seria minha função favorita.",
-      "Você é o push perfeito no meu repositório do amor.",
-      "Entre tantos bugs, você é meu debug mais doce.",
-      "Sem você, minha vida é só um código sem compilação.",
-      "Nosso amor roda até sem internet.",
-      "Você é o framework da minha felicidade.",
-      "Com você, todo dia é deploy de alegria.",
-      "Você é o comando git que salva meu coração.",
-      "Você faz meu coração dar loop de alegria!",
-      "Amar você é meu código aberto para sempre.",
-      "Se amor fosse linha de código, você seria meu script eterno.",
-      "Você é o patch que corrige meus dias cinzas.",
-      "Com você, não existe exceção que me impeça de sorrir.",
-      "Você é a variável que define minha felicidade.",
-      "Te amar é o melhor commit da minha vida.",
-      "Você é o breakpoint que pausa meu coração pra te admirar.",
-      "Você é a conexão que mantém meu mundo online.",
-      "Nosso amor é um código que nunca falha.",
-      "Você é meu debugger favorito, porque me faz ver tudo claro.",
-      "Com você, toda rotina vira função feliz.",
-      "Você é o banco de dados onde guardo meus melhores sentimentos.",
-      "Meu coração compila só quando estou com você.",
-      "Você é o plugin que faltava na minha vida.",
-      "Sem você, meu código não roda direito.",
-      "Amar você é a minha função favorita.",
-      "Você é o servidor que mantém meu coração online 24/7.",
-      "Nosso amor é o melhor algoritmo que eu já conheci.",
-      "Você é a interface que conecta meu mundo ao seu.",
-      "Você é o script que executa meus sonhos mais doces.",
-      "Se eu fosse um app, você seria minha atualização favorita.",
-      "Você é o token que dá acesso ao meu coração."
-    ];
-
-    function mostrarMensagem() {
-      const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
-      document.getElementById("mensagem").textContent = msg;
-    }
-
-    // MOTIVOS DOS 365 DIAS
-    const motivos = [
-      "1. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "2. Porque você é minha calmaria em meio ao caos.",
-      "3. Porque você me entende como ninguém.",
-      "4. Porque você é minha melhor escolha.",
-      "5. Porque seu abraço é meu lugar favorito.",
-      "6. Porque cada detalhe seu me fascina.",
-      "7. Porque seu carinho é meu remédio.",
-      "8. Porque você transforma dias comuns em momentos especiais.",
-      "9. Porque você acredita em mim, mesmo quando eu duvido.",
-      "10. Porque seu abraço é meu lugar favorito.",
-      "11. Porque juntos somos mais fortes.",
-      "12. Porque você me inspira a ser melhor a cada dia.",
-      "13. Porque você é minha calmaria em meio ao caos.",
-      "14. Porque estar com você é estar em casa.",
-      "15. Porque você é o motivo de tantos sorrisos meus.",
-      "16. Porque seu carinho é meu remédio.",
-      "17. Porque juntos somos mais fortes.",
-      "18. Porque tudo é mais bonito quando estou com você.",
-      "19. Porque você me mostra o que é o amor de verdade.",
-      "20. Porque estar com você é estar em casa.",
-      "21. Porque seu sorriso ilumina meu dia.",
-      "22. Porque seu abraço é meu lugar favorito.",
-      "23. Porque você transforma dias comuns em momentos especiais.",
-      "24. Porque até o silêncio ao seu lado é confortável.",
-      "25. Porque você é minha calmaria em meio ao caos.",
-      "26. Porque tudo é mais bonito quando estou com você.",
-      "27. Porque você me inspira a ser melhor a cada dia.",
-      "28. Porque seu carinho é meu remédio.",
-      "29. Porque seu carinho é meu remédio.",
-      "30. Porque nossos planos me enchem de esperança.",
-      "31. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "32. Porque você me entende como ninguém.",
-      "33. Porque você é minha melhor escolha.",
-      "34. Porque seus olhos têm a paz que eu procurava.",
-      "35. Porque nossos planos me enchem de esperança.",
-      "36. Porque cada detalhe seu me fascina.",
-      "37. Porque até o silêncio ao seu lado é confortável.",
-      "38. Porque nossos planos me enchem de esperança.",
-      "39. Porque você me entende como ninguém.",
-      "40. Porque você é minha calmaria em meio ao caos.",
-      "41. Porque você é o motivo de tantos sorrisos meus.",
-      "42. Porque você me inspira a ser melhor a cada dia.",
-      "43. Porque nossos planos me enchem de esperança.",
-      "44. Porque seu toque é inesquecível.",
-      "45. Porque cada detalhe seu me fascina.",
-      "46. Porque seu toque é inesquecível.",
-      "47. Porque até o silêncio ao seu lado é confortável.",
-      "48. Porque seu abraço é meu lugar favorito.",
-      "49. Porque cada detalhe seu me fascina.",
-      "50. Porque você faz meu coração bater mais forte.",
-      "51. Porque seu toque é inesquecível.",
-      "52. Porque você é o motivo de tantos sorrisos meus.",
-      "53. Porque você me entende como ninguém.",
-      "54. Porque até o silêncio ao seu lado é confortável.",
-      "55. Porque você cuida de mim com tanto carinho.",
-      "56. Porque você é minha melhor escolha.",
-      "57. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "58. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "59. Porque seus olhos têm a paz que eu procurava.",
-      "60. Porque nossos planos me enchem de esperança.",
-      "61. Porque você me inspira a ser melhor a cada dia.",
-      "62. Porque tudo é mais bonito quando estou com você.",
-      "63. Porque seu sorriso ilumina meu dia.",
-      "64. Porque tudo é mais bonito quando estou com você.",
-      "65. Porque você me inspira a ser melhor a cada dia.",
-      "66. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "67. Porque seu carinho é meu remédio.",
-      "68. Porque juntos somos mais fortes.",
-      "69. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "70. Porque você acredita em mim, mesmo quando eu duvido.",
-      "71. Porque você é o motivo de tantos sorrisos meus.",
-      "72. Porque você me mostra o que é o amor de verdade.",
-      "73. Porque seu carinho é meu remédio.",
-      "74. Porque você faz meu coração bater mais forte.",
-      "75. Porque cada momento ao seu lado vale ouro.",
-      "76. Porque seu sorriso ilumina meu dia.",
-      "77. Porque você é o motivo de tantos sorrisos meus.",
-      "78. Porque seu jeito me encanta todos os dias.",
-      "79. Porque seu carinho é meu remédio.",
-      "80. Porque seus olhos têm a paz que eu procurava.",
-      "81. Porque seu toque é inesquecível.",
-      "82. Porque você me inspira a ser melhor a cada dia.",
-      "83. Porque você me entende como ninguém.",
-      "84. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "85. Porque seu sorriso ilumina meu dia.",
-      "86. Porque seu jeito me encanta todos os dias.",
-      "87. Porque até o silêncio ao seu lado é confortável.",
-      "88. Porque tudo é mais bonito quando estou com você.",
-      "89. Porque seu abraço é meu lugar favorito.",
-      "90. Porque cada detalhe seu me fascina.",
-      "91. Porque você cuida de mim com tanto carinho.",
-      "92. Porque juntos somos mais fortes.",
-      "93. Porque seu toque é inesquecível.",
-      "94. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "95. Porque seus olhos têm a paz que eu procurava.",
-      "96. Porque seu abraço é meu lugar favorito.",
-      "97. Porque você acredita em mim, mesmo quando eu duvido.",
-      "98. Porque seus olhos têm a paz que eu procurava.",
-      "99. Porque seu jeito me encanta todos os dias.",
-      "100. Porque você é minha melhor escolha.",
-      "101. Porque seu carinho é meu remédio.",
-      "102. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "103. Porque você me inspira a ser melhor a cada dia.",
-      "104. Porque cada detalhe seu me fascina.",
-      "105. Porque você é minha calmaria em meio ao caos.",
-      "106. Porque você me mostra o que é o amor de verdade.",
-      "107. Porque estar com você é estar em casa.",
-      "108. Porque cada detalhe seu me fascina.",
-      "109. Porque você me entende como ninguém.",
-      "110. Porque você é o motivo de tantos sorrisos meus.",
-      "111. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "112. Porque você me inspira a ser melhor a cada dia.",
-      "113. Porque você transforma dias comuns em momentos especiais.",
-      "114. Porque seu toque é inesquecível.",
-      "115. Porque cada momento ao seu lado vale ouro.",
-      "116. Porque tudo é mais bonito quando estou com você.",
-      "117. Porque nossos planos me enchem de esperança.",
-      "118. Porque seu abraço é meu lugar favorito.",
-      "119. Porque seu abraço é meu lugar favorito.",
-      "120. Porque cada momento ao seu lado vale ouro.",
-      "121. Porque tudo é mais bonito quando estou com você.",
-      "122. Porque seu jeito me encanta todos os dias.",
-      "123. Porque você me inspira a ser melhor a cada dia.",
-      "124. Porque você me inspira a ser melhor a cada dia.",
-      "125. Porque você acredita em mim, mesmo quando eu duvido.",
-      "126. Porque você me entende como ninguém.",
-      "127. Porque estar com você é estar em casa.",
-      "128. Porque juntos somos mais fortes.",
-      "129. Porque você é minha calmaria em meio ao caos.",
-      "130. Porque seus olhos têm a paz que eu procurava.",
-      "131. Porque cada detalhe seu me fascina.",
-      "132. Porque seu abraço é meu lugar favorito.",
-      "133. Porque você me inspira a ser melhor a cada dia.",
-      "134. Porque seu sorriso ilumina meu dia.",
-      "135. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "136. Porque seu carinho é meu remédio.",
-      "137. Porque juntos somos mais fortes.",
-      "138. Porque você me inspira a ser melhor a cada dia.",
-      "139. Porque você transforma dias comuns em momentos especiais.",
-      "140. Porque cada momento ao seu lado vale ouro.",
-      "141. Porque cada momento ao seu lado vale ouro.",
-      "142. Porque você faz meu coração bater mais forte.",
-      "143. Porque você é minha calmaria em meio ao caos.",
-      "144. Porque seu abraço é meu lugar favorito.",
-      "145. Porque tudo é mais bonito quando estou com você.",
-      "146. Porque seu sorriso ilumina meu dia.",
-      "147. Porque você faz meu coração bater mais forte.",
-      "148. Porque você é minha calmaria em meio ao caos.",
-      "149. Porque nossos planos me enchem de esperança.",
-      "150. Porque você me entende como ninguém.",
-      "151. Porque você me entende como ninguém.",
-      "152. Porque você faz meu coração bater mais forte.",
-      "153. Porque você cuida de mim com tanto carinho.",
-      "154. Porque seu toque é inesquecível.",
-      "155. Porque nossos planos me enchem de esperança.",
-      "156. Porque cada detalhe seu me fascina.",
-      "157. Porque seu carinho é meu remédio.",
-      "158. Porque seu carinho é meu remédio.",
-      "159. Porque cada detalhe seu me fascina.",
-      "160. Porque você é o motivo de tantos sorrisos meus.",
-      "161. Porque tudo é mais bonito quando estou com você.",
-      "162. Porque você me inspira a ser melhor a cada dia.",
-      "163. Porque juntos somos mais fortes.",
-      "164. Porque seu sorriso ilumina meu dia.",
-      "165. Porque cada detalhe seu me fascina.",
-      "166. Porque seu jeito me encanta todos os dias.",
-      "167. Porque seus olhos têm a paz que eu procurava.",
-      "168. Porque seus olhos têm a paz que eu procurava.",
-      "169. Porque nossos planos me enchem de esperança.",
-      "170. Porque você é o motivo de tantos sorrisos meus.",
-      "171. Porque você faz meu coração bater mais forte.",
-      "172. Porque você me entende como ninguém.",
-      "173. Porque seu sorriso ilumina meu dia.",
-      "174. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "175. Porque você acredita em mim, mesmo quando eu duvido.",
-      "176. Porque você cuida de mim com tanto carinho.",
-      "177. Porque seus olhos têm a paz que eu procurava.",
-      "178. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "179. Porque seu toque é inesquecível.",
-      "180. Porque cada momento ao seu lado vale ouro.",
-      "181. Porque você transforma dias comuns em momentos especiais.",
-      "182. Porque você é o motivo de tantos sorrisos meus.",
-      "183. Porque seu sorriso ilumina meu dia.",
-      "184. Porque estar com você é estar em casa.",
-      "185. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "186. Porque cada detalhe seu me fascina.",
-      "187. Porque seu abraço é meu lugar favorito.",
-      "188. Porque você transforma dias comuns em momentos especiais.",
-      "189. Porque você faz meu coração bater mais forte.",
-      "190. Porque você é o motivo de tantos sorrisos meus.",
-      "191. Porque você me mostra o que é o amor de verdade.",
-      "192. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "193. Porque tudo é mais bonito quando estou com você.",
-      "194. Porque você cuida de mim com tanto carinho.",
-      "195. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "196. Porque você é minha melhor escolha.",
-      "197. Porque você é o motivo de tantos sorrisos meus.",
-      "198. Porque você é minha calmaria em meio ao caos.",
-      "199. Porque você acredita em mim, mesmo quando eu duvido.",
-      "200. Porque estar com você é estar em casa.",
-      "201. Porque tudo é mais bonito quando estou com você.",
-      "202. Porque cada detalhe seu me fascina.",
-      "203. Porque juntos somos mais fortes.",
-      "204. Porque seu sorriso ilumina meu dia.",
-      "205. Porque você acredita em mim, mesmo quando eu duvido.",
-      "206. Porque seu sorriso ilumina meu dia.",
-      "207. Porque você me mostra o que é o amor de verdade.",
-      "208. Porque você faz meu coração bater mais forte.",
-      "209. Porque nossos planos me enchem de esperança.",
-      "210. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "211. Porque juntos somos mais fortes.",
-      "212. Porque seus olhos têm a paz que eu procurava.",
-      "213. Porque até o silêncio ao seu lado é confortável.",
-      "214. Porque nossos planos me enchem de esperança.",
-      "215. Porque seu sorriso ilumina meu dia.",
-      "216. Porque cada detalhe seu me fascina.",
-      "217. Porque cada detalhe seu me fascina.",
-      "218. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "219. Porque seu sorriso ilumina meu dia.",
-      "220. Porque você cuida de mim com tanto carinho.",
-      "221. Porque você me inspira a ser melhor a cada dia.",
-      "222. Porque você me mostra o que é o amor de verdade.",
-      "223. Porque você me entende como ninguém.",
-      "224. Porque até o silêncio ao seu lado é confortável.",
-      "225. Porque você cuida de mim com tanto carinho.",
-      "226. Porque estar com você é estar em casa.",
-      "227. Porque cada momento ao seu lado vale ouro.",
-      "228. Porque seu toque é inesquecível.",
-      "229. Porque seus olhos têm a paz que eu procurava.",
-      "230. Porque tudo é mais bonito quando estou com você.",
-      "231. Porque você acredita em mim, mesmo quando eu duvido.",
-      "232. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "233. Porque você me entende como ninguém.",
-      "234. Porque até o silêncio ao seu lado é confortável.",
-      "235. Porque nossos planos me enchem de esperança.",
-      "236. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "237. Porque você me entende como ninguém.",
-      "238. Porque até o silêncio ao seu lado é confortável.",
-      "239. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "240. Porque você me mostra o que é o amor de verdade.",
-      "241. Porque seu carinho é meu remédio.",
-      "242. Porque você acredita em mim, mesmo quando eu duvido.",
-      "243. Porque tudo é mais bonito quando estou com você.",
-      "244. Porque até o silêncio ao seu lado é confortável.",
-      "245. Porque juntos somos mais fortes.",
-      "246. Porque estar com você é estar em casa.",
-      "247. Porque você é minha melhor escolha.",
-      "248. Porque você é minha melhor escolha.",
-      "249. Porque até o silêncio ao seu lado é confortável.",
-      "250. Porque você me mostra o que é o amor de verdade.",
-      "251. Porque seu abraço é meu lugar favorito.",
-      "252. Porque cada momento ao seu lado vale ouro.",
-      "253. Porque você é o motivo de tantos sorrisos meus.",
-      "254. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "255. Porque juntos somos mais fortes.",
-      "256. Porque seus olhos têm a paz que eu procurava.",
-      "257. Porque juntos somos mais fortes.",
-      "258. Porque cada detalhe seu me fascina.",
-      "259. Porque você me entende como ninguém.",
-      "260. Porque até o silêncio ao seu lado é confortável.",
-      "261. Porque cada detalhe seu me fascina.",
-      "262. Porque seu sorriso ilumina meu dia.",
-      "263. Porque você me entende como ninguém.",
-      "264. Porque seu carinho é meu remédio.",
-      "265. Porque você cuida de mim com tanto carinho.",
-      "266. Porque seu sorriso ilumina meu dia.",
-      "267. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "268. Porque tudo é mais bonito quando estou com você.",
-      "269. Porque você é minha calmaria em meio ao caos.",
-      "270. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "271. Porque nossos planos me enchem de esperança.",
-      "272. Porque você transforma dias comuns em momentos especiais.",
-      "273. Porque você cuida de mim com tanto carinho.",
-      "274. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "275. Porque seu sorriso ilumina meu dia.",
-      "276. Porque estar com você é estar em casa.",
-      "277. Porque seu carinho é meu remédio.",
-      "278. Porque seus olhos têm a paz que eu procurava.",
-      "279. Porque seu carinho é meu remédio.",
-      "280. Porque seu toque é inesquecível.",
-      "281. Porque você me inspira a ser melhor a cada dia.",
-      "282. Porque você cuida de mim com tanto carinho.",
-      "283. Porque seu jeito me encanta todos os dias.",
-      "284. Porque você me mostra o que é o amor de verdade.",
-      "285. Porque até o silêncio ao seu lado é confortável.",
-      "286. Porque nossos planos me enchem de esperança.",
-      "287. Porque você me inspira a ser melhor a cada dia.",
-      "288. Porque cada detalhe seu me fascina.",
-      "289. Porque você cuida de mim com tanto carinho.",
-      "290. Porque você é minha calmaria em meio ao caos.",
-      "291. Porque estar com você é estar em casa.",
-      "292. Porque cada momento ao seu lado vale ouro.",
-      "293. Porque você faz meu coração bater mais forte.",
-      "294. Porque juntos somos mais fortes.",
-      "295. Porque tudo é mais bonito quando estou com você.",
-      "296. Porque seu carinho é meu remédio.",
-      "297. Porque você me inspira a ser melhor a cada dia.",
-      "298. Porque você transforma dias comuns em momentos especiais.",
-      "299. Porque juntos somos mais fortes.",
-      "300. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "301. Porque seu carinho é meu remédio.",
-      "302. Porque seu carinho é meu remédio.",
-      "303. Porque você é minha melhor escolha.",
-      "304. Porque você é minha calmaria em meio ao caos.",
-      "305. Porque seu abraço é meu lugar favorito.",
-      "306. Porque você transforma dias comuns em momentos especiais.",
-      "307. Porque seu abraço é meu lugar favorito.",
-      "308. Porque você é o motivo de tantos sorrisos meus.",
-      "309. Porque juntos somos mais fortes.",
-      "310. Porque você transforma dias comuns em momentos especiais.",
-      "311. Porque seu toque é inesquecível.",
-      "312. Porque seu toque é inesquecível.",
-      "313. Porque você é minha melhor escolha.",
-      "314. Porque seu jeito me encanta todos os dias.",
-      "315. Porque você me mostra o que é o amor de verdade.",
-      "316. Porque você é minha melhor escolha.",
-      "317. Porque você é o motivo de tantos sorrisos meus.",
-      "318. Porque até o silêncio ao seu lado é confortável.",
-      "319. Porque cada detalhe seu me fascina.",
-      "320. Porque você acredita em mim, mesmo quando eu duvido.",
-      "321. Porque seu jeito me encanta todos os dias.",
-      "322. Porque você me inspira a ser melhor a cada dia.",
-      "323. Porque você acredita em mim, mesmo quando eu duvido.",
-      "324. Porque seu toque é inesquecível.",
-      "325. Porque você acredita em mim, mesmo quando eu duvido.",
-      "326. Porque nossos planos me enchem de esperança.",
-      "327. Porque estar com você é estar em casa.",
-      "328. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "329. Porque você transforma dias comuns em momentos especiais.",
-      "330. Porque você é o motivo de tantos sorrisos meus.",
-      "331. Porque seu riso é a trilha sonora perfeita da minha vida.",
-      "332. Porque juntos somos mais fortes.",
-      "333. Porque seu sorriso ilumina meu dia.",
-      "334. Porque você cuida de mim com tanto carinho.",
-      "335. Porque você me mostra o que é o amor de verdade.",
-      "336. Porque estar com você é estar em casa.",
-      "337. Porque estar com você é estar em casa.",
-      "338. Porque cada momento ao seu lado vale ouro.",
-      "339. Porque seu carinho é meu remédio.",
-      "340. Porque cada detalhe seu me fascina.",
-      "341. Porque você é minha melhor escolha.",
-      "342. Porque seu toque é inesquecível.",
-      "343. Porque você é minha melhor escolha.",
-      "344. Porque tudo é mais bonito quando estou com você.",
-      "345. Porque você cuida de mim com tanto carinho.",
-      "346. Porque seu carinho é meu remédio.",
-      "347. Porque nossos planos me enchem de esperança.",
-      "348. Porque você é o motivo de tantos sorrisos meus.",
-      "349. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "350. Porque você me mostra o que é o amor de verdade.",
-      "351. Porque seu jeito me encanta todos os dias.",
-      "352. Porque seu sorriso ilumina meu dia.",
-      "353. Porque você transforma dias comuns em momentos especiais.",
-      "354. Porque cada momento ao seu lado vale ouro.",
-      "355. Porque juntos somos mais fortes.",
-      "356. Porque você acredita em mim, mesmo quando eu duvido.",
-      "357. Porque tudo é mais bonito quando estou com você.",
-      "358. Porque você faz meu coração bater mais forte.",
-      "359. Porque seu jeito me encanta todos os dias.",
-      "360. Porque você faz meu coração bater mais forte.",
-      "361. Porque estar com você é estar em casa.",
-      "362. Porque seu jeito de ser me faz te amar cada dia mais.",
-      "363. Porque seu carinho é meu remédio.",
-      "364. Porque seu abraço é meu lugar favorito.",
-      "365. Porque estar com você é estar em casa."
-    ];
-
-    function mostrarMotivo() {
-      const hoje = new Date();
-      const inicioAno = new Date(hoje.getFullYear(), 0, 1);
-      const diaDoAno = Math.floor((hoje - inicioAno) / (1000 * 60 * 60 * 24));
-      const indice = diaDoAno % motivos.length;
-      document.getElementById("motivo").textContent = motivos[indice];
-    }
-
-    mostrarMotivo();
-
-    // CORAÇÕES CAINDO
-    function criarCoracao() {
-      const heart = document.createElement('div');
-      heart.textContent = '❤️';
-      heart.className = 'falling-heart';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      heart.style.opacity = Math.random();
-
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 7000);
-    }
-    setInterval(criarCoracao, 400);
-
-    // CONTROLES DE MÚSICA
     const musica = document.getElementById('musica');
     const btnPlayPause = document.getElementById('btnPlayPause');
     const btnMute = document.getElementById('btnMute');
-
     function togglePlayPause() {
       if (musica.paused) {
         musica.play();
@@ -724,7 +152,6 @@
         btnPlayPause.textContent = "Tocar";
       }
     }
-
     function toggleMute() {
       musica.muted = !musica.muted;
       btnMute.textContent = musica.muted ? "Desmutar" : "Mutar";
