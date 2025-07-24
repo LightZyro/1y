@@ -583,12 +583,14 @@
       document.getElementById("motivo").textContent = motivos[indice];
     }
     //mostrarMotivo();
-        function atualizarContador() {
+     function atualizarContador() {
       const dataInicio = new Date("2024-07-24T12:43:00");
       const agora = new Date();
       let anos = agora.getFullYear() - dataInicio.getFullYear();
       let meses = agora.getMonth() - dataInicio.getMonth();
       let dias = agora.getDate() - dataInicio.getDate();
+      const passouHora = agora.getHours() > 12 || (agora.getHours() === 12 && agora.getMinutes() >= 43);
+      if (!passouHora) dias--;
       if (dias < 0) {
         meses--;
         const diasNoMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
